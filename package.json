@@ -1,0 +1,45 @@
+{
+  "name": "OMDB-Site",
+  "version": "1.0.0",
+  "main": "./src/main.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "babel": "babel src/main.js --out-dir dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "last 2 versions",
+    "> 1%"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/runtime-corejs3": "^7.15.4",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.4.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.0.1",
+    "html-webpack-plugin": "^5.4.0",
+    "postcss": "^8.3.11",
+    "postcss-loader": "^6.2.0",
+    "sass": "^1.43.3",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1",
+    "dotenv-webpack": "^8.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1"
+  }
+}
