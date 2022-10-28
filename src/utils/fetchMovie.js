@@ -13,7 +13,6 @@ export default async function (search = '', pageCount = 0, id = '') {
         } else {
             const response = await fetch(url + apiKey + 'i=' + id);
             const data = await response.json();
-            console.log(data);
             return data;
         }
     } catch (err){

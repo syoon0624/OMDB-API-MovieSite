@@ -14,7 +14,11 @@ const setDataList = async() => {
             alert('찾으시는 정보가 없습니다!')
         } else {
             dataInHTML(data);
-            page++;
+            if(data.length === 10) {
+                page++;
+            } else {
+                page = 1;
+            }
         }
     }
 }
