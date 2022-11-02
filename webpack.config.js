@@ -29,6 +29,11 @@ module.exports = (env, options) => {
           test: /\.s?css$/,
           use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         },
+        {
+          // 이미지 포멧: PNG, JP(E)G, GIF, SVG, WEBP
+          test: /\.png$/i,
+          use: ['file-loader'],
+        },
       ],
     },
     plugins: [
