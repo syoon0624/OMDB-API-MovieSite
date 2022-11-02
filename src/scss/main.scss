@@ -1,20 +1,77 @@
+@import 'reset.scss';
+
+@font-face {
+  font-family: 'OTWelcomeBA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'OTWelcomeBA';
+  background-color: antiquewhite;
+  :focus {
+    outline: 0;
+  }
+}
+
+
+
 div {
     display: block;
-    background-color: lemonchiffon;
   }
 
-  button {
-    all: unset;
-    background-color: mediumslateblue;
-    color: white;
-    padding: 5px 25px;
-    border-radius: 10px;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  .main-logo {
+    img {
+      display: block;
+      width: 300px;
+    }
+    border-radius: 30px;
+    border: 2px solid pink;
+    overflow: hidden;
+    transition: all 300ms ease-out;
     cursor: pointer;
   }
-  .btn {
-    margin-top: 60px;
+  .main-logo:hover {
+    transform: rotate(-5deg);
+    transition: all 300ms ease-out;
   }
-  
+}
+
+.search_form {
+  margin-top: 30px;
+  overflow: hidden;
+  border: 3px solid pink;
+  background-color: white;
+  border-radius: 20px;
+  .search_button {
+    all: unset;
+    background-color: pink;
+    color: white;
+    padding: 15px 20px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .search_button:hover {
+    color: black;
+  }
+  .search_input {
+    background-color: white;
+    width: 60vw;
+    font-size: 30px;
+    padding: 10px 20px;
+    border: none;
+  }
+  .search_input:focus {
+    
+  }
+}
   .modal {
     display: flex;
     justify-content: center;
