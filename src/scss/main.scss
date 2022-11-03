@@ -15,11 +15,22 @@
   }
 }
 
+.header-container {
+  width: 90vw;
+  opacity: 1;
+  margin: 0 auto;
+  max-height: 300px;
+  border: 2px solid black;
+}
 
-
-div {
-    display: block;
+.movie_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  ul {
+    width: 300px;
   }
+}
 
 .main-container {
   display: flex;
@@ -44,7 +55,13 @@ div {
   }
 }
 
-.search_form {
+.hidden {
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.search-container .search_form {
   margin-top: 30px;
   overflow: hidden;
   border: 3px solid pink;
@@ -67,9 +84,6 @@ div {
     font-size: 30px;
     padding: 10px 20px;
     border: none;
-  }
-  .search_input:focus {
-    
   }
 }
   .modal {

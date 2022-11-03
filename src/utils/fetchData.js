@@ -3,9 +3,15 @@ import fetchMovie from "./fetchMovie.js";
 import openModal from "./modalDetail.js";
 
 let page = 1;
+let toggle = false;
 
 const setDataList = async() => {
-    const input = document.querySelector('.search_input').value;
+    const input = toggle ? 
+    document.querySelector('.header-container > form > input').value : 
+    document.querySelector('.search-container > form > input').value;
+
+    console.log(input);
+
     const text = input? 's='+input : undefined;
     if(text !== undefined) {
         const movie = await fetchMovie(text,page)
@@ -20,6 +26,15 @@ const setDataList = async() => {
                 page = 1;
             }
         }
+    }
+
+    if(toggle === false ) {
+        const mainSearchCon = document.querySelector('.main-container');
+        const headerCon = document.querySelector('.header-container');
+
+        mainSearchCon.remove();
+        headerCon.classList.remove('hidden');
+        toggle = true;
     }
 }
 
@@ -70,16 +85,12 @@ function scroll(){
     io.observe(endEl);
 }
 
-
 export default function (event) {
+    event.preventDefault();
     try {
-        event.preventDefault();
-        // if(document.querySelector('.end_scroll')){
-        //     removeEnd();
-        // }
-        while(document.querySelector('ul') !== null) {
+            while(document.querySelector('.movie_list > ul') !== null) {
             page = 1;
-            const child = document.querySelector('ul');
+            const child = document.querySelector('.movie_list > ul');
             child.parentNode.removeChild(child);
         }
         setDataList().then(inDataIdList).then(scroll);
