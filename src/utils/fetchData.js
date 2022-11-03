@@ -7,10 +7,10 @@ let toggle = false;
 
 const setDataList = async() => {
     const input = toggle ? 
-    document.querySelector('.header-container > form > input').value : 
+    document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
 
-    console.log(input);
+    // console.log(input);
 
     const text = input? 's='+input : undefined;
     if(text !== undefined) {
@@ -19,6 +19,7 @@ const setDataList = async() => {
         if(data === undefined){
             alert('찾으시는 정보가 없습니다!')
         } else {
+            // console.log(data);
             dataInHTML(data);
             if(data.length === 10) {
                 page++;
@@ -30,11 +31,14 @@ const setDataList = async() => {
 
     if(toggle === false ) {
         const mainSearchCon = document.querySelector('.main-container');
-        const headerCon = document.querySelector('.header-container');
+        const headerCon = document.querySelector('.hidden');
 
         mainSearchCon.remove();
         headerCon.classList.remove('hidden');
+        headerCon.classList.add('header-container');
         toggle = true;
+
+        document.querySelector('header > div > form > input').value = input;
     }
 }
 
@@ -47,7 +51,8 @@ const showData = async (ele) => {
 }
 
 const inDataIdList = () => {
-    const dataId = document.querySelectorAll('ul');
+    const dataId = document.querySelectorAll('.movie-box');
+    console.log(dataId);
     dataId.forEach(element => {
         element.addEventListener('click',() => {
             showData(element);
@@ -70,7 +75,7 @@ function scroll(){
         */
     const ioTarget = entry[0].target;
     if ( entry[0].isIntersecting) {
-            console.log('현재 보이는 타겟:', ioTarget);
+            // console.log('현재 보이는 타겟:', ioTarget);
             io.unobserve(endEl);
             if(page === 1) {
                 observer.disconnect();
