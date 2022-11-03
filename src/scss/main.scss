@@ -31,6 +31,11 @@
 header {
   border-bottom: 2px solid pink;
   background-color: rgb(87, 84, 84);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
   .logo-wrapper {
     border: 2px solid pink;
     width: 53px;
@@ -128,7 +133,7 @@ header {
 .search-info {
   width: 90vw;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 100px;
   .search-total {
     strong {
       font-family: 'MaplestoryOTFBold';
@@ -166,6 +171,7 @@ header {
 }
 .modal {
   font-family: 'OTWelcomeBA';
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
