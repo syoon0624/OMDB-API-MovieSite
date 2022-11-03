@@ -8,7 +8,7 @@ export default async function (search = '', pageCount = 0, id = '') {
         if(id === '') {
             const response = await fetch(url + apiKey + search + page);
             const data = await response.json();
-            // console.log(data.Search);
+            // console.log(data);
             return data;
         } else {
             const response = await fetch(url + apiKey + 'i=' + id);

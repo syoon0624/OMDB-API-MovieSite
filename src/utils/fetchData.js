@@ -5,10 +5,12 @@ import openModal from "./modalDetail.js";
 let page = 1;
 let toggle = false;
 
+// 데이터 불러오기 후 태그에 넣기
 const setDataList = async() => {
     const input = toggle ? 
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
+
 
     // console.log(input);
 
@@ -16,19 +18,26 @@ const setDataList = async() => {
     if(text !== undefined) {
         const movie = await fetchMovie(text,page)
         const data = movie.Search;
-        if(data === undefined){
+        const total = movie.totalResults ?? 0;
+
+        if(page === 1) {
+            const infoEl = document.querySelector('.search-info');
+            infoEl.innerHTML = `
+                <div class="search-total">
+                    <strong> '${input}': 총 ${total} 개의 검색결과</strong>
+                </div>
+            `;
+        }
+
+        if(data === undefined) {
             alert('찾으시는 정보가 없습니다!')
         } else {
-            // console.log(data);
             dataInHTML(data);
-            if(data.length === 10) {
-                page++;
-            } else {
-                page = 1;
-            }
+            data.length === 10 ? page++ : page = 1;
         }
     }
 
+    // 첫 메인화면에서 검색 후, 검색 화면으로 전환하기 위한 태그 스위칭, 토글링
     if(toggle === false ) {
         const mainSearchCon = document.querySelector('.main-container');
         const headerCon = document.querySelector('.hidden');
@@ -42,6 +51,7 @@ const setDataList = async() => {
     }
 }
 
+// 영화 modal 창 띄우기
 const showData = async (ele) => {
     const detail = await fetchMovie('',-1,ele.id);
     console.log(detail.Runtime);
@@ -50,6 +60,7 @@ const showData = async (ele) => {
     }
 }
 
+// movie-box에 영화 id 검색해서 modal 창 띄우기
 const inDataIdList = () => {
     const dataId = document.querySelectorAll('.movie-box');
     console.log(dataId);
