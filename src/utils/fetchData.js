@@ -12,14 +12,12 @@ const setDataList = async() => {
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
 
+    // console.log(input);
     const loader = new loaders({
         el: '.movie-loading',
         color: 'pink',
     });
     loader.start();
-
-    // console.log(input);
-
     const text = input? 's='+input : undefined;
     if(text !== undefined) {
         const movie = await fetchMovie(text,page);

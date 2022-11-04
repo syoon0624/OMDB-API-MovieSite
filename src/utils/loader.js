@@ -2,8 +2,8 @@ export default class {
   constructor(options) {
     const {
       el: element = null,
-      size = '30',
-      width = '4',
+      size = '100',
+      width = '20',
       color = '#333',
     } = options;
     this.el = document.querySelector(element);
@@ -19,6 +19,10 @@ export default class {
         border-radius: 50%;
         border-top-color: transparent;
         animation: loading-spin .8s linear infinite;
+        z-index: 3;
+        position: fixed;
+        top: 40%;
+        left: 45%;
       }
       .my-loader.start {
         display: block;
