@@ -1,6 +1,7 @@
 import dataInHTML from "./makeSearchList.js";
 import fetchMovie from "./fetchMovie.js";
 import openModal from "./modalDetail.js";
+import loaders from "./loader.js";
 
 let page = 1;
 let toggle = false;
@@ -11,12 +12,18 @@ const setDataList = async() => {
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
 
+    const loader = new loaders({
+        el: '.movie-loading',
+        color: 'pink',
+    });
+    loader.start();
 
     // console.log(input);
 
     const text = input? 's='+input : undefined;
     if(text !== undefined) {
-        const movie = await fetchMovie(text,page)
+        const movie = await fetchMovie(text,page);
+
         const data = movie.Search;
         const total = movie.totalResults ?? 0;
 
@@ -32,6 +39,7 @@ const setDataList = async() => {
         if(data === undefined) {
             alert('찾으시는 정보가 없습니다!')
         } else {
+            loader.stop();
             dataInHTML(data);
             data.length === 10 ? page++ : page = 1;
         }
