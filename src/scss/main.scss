@@ -16,10 +16,13 @@
 
 * {
   font-family: 'OTWelcomeBA';
-  background-color: rgb(87, 84, 84);
   :focus {
     outline: 0;
   }
+}
+
+body {
+  background-color: rgb(87, 84, 84);
 }
 
 .hidden {
@@ -203,7 +206,7 @@ header {
 .movie_list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   width: 90vw;
   margin: 0 auto;
   border-radius: 20px;
@@ -211,12 +214,12 @@ header {
   background-color: #2E3B31;
   padding: 0px 15px;
   ul {
-    width: 200px;
+    width: 230px;
     height: 330px;
     border-radius: 5px;
     overflow: hidden;
     background-color: white;
-    margin-top: 20px;
+    margin: 20px 10px;
     box-shadow: 10px 10px 0px 0px black;
   }
   .movie-box {
@@ -235,7 +238,7 @@ header {
     }
     &:hover {
         margin-top: 10px;
-        width: 220px;
+        width: 240px;
         transition: 0.3s all;
       .movie-info {
         position: absolute;
@@ -248,7 +251,7 @@ header {
           
           padding: 20px 0px;
           text-align: center;
-          width: 220px;
+          width: 240px;
           
 
           font-weight: bolder;
