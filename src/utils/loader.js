@@ -7,31 +7,11 @@ export default class {
       color = '#333',
     } = options;
     this.el = document.querySelector(element);
-    this.el.classList.add('my-loader');
-    const styleEl = document.createElement('style');
-    styleEl.innerHTML = `.my-loader {
-        display:none;
-        width: ${size}px;
-        height: ${size}px;
-        border-width: ${width}px;
-        border-style: solid;
-        border-color: ${color};
-        border-radius: 50%;
-        border-top-color: transparent;
-        animation: loading-spin .8s linear infinite;
-        z-index: 3;
-        position: fixed;
-        top: 40%;
-        left: 45%;
-      }
-      .my-loader.start {
-        display: block;
-      }
-      @keyframes loading-spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }`;
-    document.head.append(styleEl);
+    this.el.innerHTML = `
+      <svg viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715">
+      	<circle cx="45.714285714285715" cy="45.714285714285715" r="20" stroke-width="5.714285714285714" stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px"></circle>
+      </svg>
+    `
   }
   start() {
     this.el.classList.add('start');
