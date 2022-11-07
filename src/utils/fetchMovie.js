@@ -6,7 +6,8 @@ export default async function (search = '', pageCount = 0, id = '') {
     const page = `&page=${pageCount}`;
     try {
         if(id === '') {
-            const response = await fetch(url + apiKey + search + page);
+            const response = await fetch(url + apiKey + search + page +'&y=2019');
+            console.log(response);
             const data = await response.json();
             // console.log(data);
             return data;
@@ -17,6 +18,5 @@ export default async function (search = '', pageCount = 0, id = '') {
         }
     } catch (err){
         alert('영화정보를 불러올 수 없습니다!', err);
-    }
-    
+    }  
 };

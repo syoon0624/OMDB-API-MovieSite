@@ -1,7 +1,6 @@
 import './scss/main.scss';
 import { fetchData } from './utils';
 import logoimg from './images/logo.png';
-import loaders from './utils/loader';
 
 const imgEl = document.querySelector('.main-logo > img');
 imgEl.src = logoimg;
@@ -19,8 +18,3 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
         console.log(err);
     }
 })();
-
-
-const a = () => {
-    
-}

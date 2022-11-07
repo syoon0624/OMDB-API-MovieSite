@@ -3,19 +3,27 @@ import fetchMovie from "./fetchMovie.js";
 import openModal from "./modalDetail.js";
 import loaders from "./loader.js";
 
+// 전역 변수
 let page = 1;
 let toggle = false;
+let input = toggle ? 
+document.querySelector('header > div > form > input').value : 
+document.querySelector('.search-container > form > input').value;
 
 // 데이터 불러오기 후 태그에 넣기
-const setDataList = async() => {
-    const input = toggle ? 
-    document.querySelector('header > div > form > input').value : 
-    document.querySelector('.search-container > form > input').value;
+const setDataList = async(value = '') => {
+    if(value === '') {
+        input = toggle ? 
+        document.querySelector('header > div > form > input').value : 
+        document.querySelector('.search-container > form > input').value;
+    } else {
+        input = value;
+    }
 
     // console.log(input);
     const loader = new loaders({
         el: '.movie-loading',
-        color: 'pink',
+        color: '#2E3B31',
     });
     loader.start();
     const text = input? 's='+input : undefined;
@@ -37,10 +45,10 @@ const setDataList = async() => {
         if(data === undefined) {
             alert('찾으시는 정보가 없습니다!')
         } else {
-            loader.stop();
             dataInHTML(data);
             data.length === 10 ? page++ : page = 1;
         }
+        loader.stop();
     }
 
     // 첫 메인화면에서 검색 후, 검색 화면으로 전환하기 위한 태그 스위칭, 토글링
@@ -91,13 +99,13 @@ function scroll(){
         time: 변경이 발생한 시간 정보(DOMHighResTimeStamp)
         */
     const ioTarget = entry[0].target;
-    if ( entry[0].isIntersecting) {
+    if (entry[0].isIntersecting) {
             // console.log('현재 보이는 타겟:', ioTarget);
             io.unobserve(endEl);
             if(page === 1) {
                 observer.disconnect();
             } else {
-                await setDataList().then(inDataIdList);
+                await setDataList(input).then(inDataIdList);
                 io.observe(endEl);
             }
         }
