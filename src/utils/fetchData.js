@@ -6,28 +6,21 @@ import loaders from "./loader.js";
 // 전역 변수
 let page = 1;
 let toggle = false;
-let input = toggle ? 
-document.querySelector('header > div > form > input').value : 
-document.querySelector('.search-container > form > input').value;
+let input = '';
 
 // 데이터 불러오기 후 태그에 넣기
 const setDataList = async(value = '') => {
-    if(value === '') {
-        input = toggle ? 
-        document.querySelector('header > div > form > input').value : 
-        document.querySelector('.search-container > form > input').value;
-    } else {
-        input = value;
-    }
-
+    input = value;
     // console.log(input);
     const loader = new loaders({
         el: '.movie-loading',
         color: '#2E3B31',
     });
-    loader.start();
-    const text = input? 's='+input : undefined;
-    if(text !== undefined) {
+
+    if(input !== '') {
+        loader.start();
+
+        const text = input? 's='+input : undefined;
         const movie = await fetchMovie(text,page);
 
         const data = movie.Search;
@@ -37,13 +30,13 @@ const setDataList = async(value = '') => {
             const infoEl = document.querySelector('.search-info');
             infoEl.innerHTML = `
                 <div class="search-total">
-                    <strong> '${input}': 총 ${total} 개의 검색결과</strong>
+                    <strong> "${input}" Search Results : ${total}</strong>
                 </div>
             `;
         }
 
         if(data === undefined) {
-            alert('찾으시는 정보가 없습니다!')
+            alert('No Search Results!');
         } else {
             dataInHTML(data);
             data.length === 10 ? page++ : page = 1;
@@ -54,11 +47,12 @@ const setDataList = async(value = '') => {
     // 첫 메인화면에서 검색 후, 검색 화면으로 전환하기 위한 태그 스위칭, 토글링
     if(toggle === false ) {
         const mainSearchCon = document.querySelector('.main-container');
-        const headerCon = document.querySelector('.hidden');
+        const headerCon = document.querySelector('header');
+        const headerDivCon = document.querySelector('header > div');
 
         mainSearchCon.remove();
         headerCon.classList.remove('hidden');
-        headerCon.classList.add('header-container');
+        headerDivCon.classList.add('header-container');
         toggle = true;
 
         document.querySelector('header > div > form > input').value = input;
@@ -117,13 +111,20 @@ function scroll(){
 
 export default function (event) {
     event.preventDefault();
+    input = toggle ? 
+    document.querySelector('header > div > form > input').value : 
+    document.querySelector('.search-container > form > input').value;
     try {
-            while(document.querySelector('.movie_list > ul') !== null) {
-            page = 1;
-            const child = document.querySelector('.movie_list > ul');
-            child.parentNode.removeChild(child);
-        }
-        setDataList().then(inDataIdList).then(scroll);
+            if(input !== ''){
+                while(document.querySelector('.movie_list > ul') !== null) {
+                    page = 1;
+                    const child = document.querySelector('.movie_list > ul');
+                    child.parentNode.removeChild(child);
+                }
+                setDataList(input).then(inDataIdList).then(scroll);
+            } else {
+                alert("Please enter the KeyWord!");
+            }
     } catch (err) {
         console.log(err)
     } finally {

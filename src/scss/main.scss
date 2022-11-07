@@ -26,9 +26,18 @@ body {
 }
 
 .hidden {
+  display: none;
   max-height: 0px;
   overflow: hidden;
   opacity: 0;
+}
+
+.clear {
+  font-family: 'OTWelcomeBA';
+  display: inline;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: -20px;
 }
 
 header {
@@ -81,18 +90,16 @@ header {
     background-color: rgb(87, 84, 84);
   }
   .search_form {
-    display: flex;
     border: 2px solid #EDDADA;
     border-radius: 20px;
     overflow: hidden;
     .search_input {
-      width: 60vw;
-      border: none;
-      font-size: 20px;
-      background-color:  #878484;
-      padding: 3px 10px;
+      background-color:  rgb(87, 84, 84);;
       color: white;
-      padding-left: 20px;
+      width: 60vw;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
     }
     input::placeholder{
       color: white;
@@ -103,7 +110,7 @@ header {
       border-left: none;
       font-size: 20px;
       background-color: #EDDADA;
-      padding: 3px 10px;
+      height: 100%;
       color: #878484;
       cursor: pointer;
     }
@@ -116,7 +123,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 84vh;
   .main-logo {
     img {
       display: block;
