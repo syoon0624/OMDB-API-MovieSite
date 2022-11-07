@@ -29,7 +29,7 @@
 }
 
 header {
-  border-bottom: 2px solid skyblue;
+  border-bottom: 2px solid #EDDADA;
   background-color: rgb(87, 84, 84);
   position: fixed;
   top: 0;
@@ -37,7 +37,7 @@ header {
   z-index: 1;
 
   .logo-wrapper {
-    border: 2px solid skyblue;
+    border: 2px solid #EDDADA;
     text-decoration: none;
     width: 53px;
     //background-image: url("../images/logo.png");
@@ -54,8 +54,8 @@ header {
       width: 70px;
       text-indent: 0px;
       background-color: black;
-      border: 3px solid skyblue;
-      color: skyblue;
+      border: 3px solid #EDDADA;
+      color: #EDDADA;
       padding-left: 10px;
       font-weight: 700;
       display : flex;
@@ -79,14 +79,14 @@ header {
   }
   .search_form {
     display: flex;
-    border: 2px solid skyblue;
+    border: 2px solid #EDDADA;
     border-radius: 20px;
     overflow: hidden;
     .search_input {
       width: 60vw;
       border: none;
       font-size: 20px;
-      background-color:  rgb(87, 84, 84);
+      background-color:  #878484;
       padding: 3px 10px;
       color: white;
       padding-left: 20px;
@@ -96,12 +96,12 @@ header {
     }
     .search_button {
       font-family: 'MaplestoryOTFBold';
-      border: 3px solid skyblue;
+      border: 3px solid #EDDADA;
       border-left: none;
       font-size: 20px;
-      background-color: skyblue;
+      background-color: #EDDADA;
       padding: 3px 10px;
-      color: white;
+      color: #878484;
       cursor: pointer;
     }
   }
@@ -120,7 +120,7 @@ header {
       width: 300px;
     }
     border-radius: 30px;
-    border: 2px solid skyblue;
+    border: 2px solid #EDDADA;
     overflow: hidden;
     transition: all 300ms ease-out;
     cursor: pointer;
@@ -138,7 +138,7 @@ header {
   .search-total {
     strong {
       font-family: 'MaplestoryOTFBold';
-      color: skyblue;
+      color: #EDDADA;
       font-size: 30px;
     }
   }
@@ -147,13 +147,13 @@ header {
 .search-container .search_form {
   margin-top: 30px;
   overflow: hidden;
-  border: 3px solid skyblue;
+  border: 3px solid #EDDADA;
   background-color: white;
   border-radius: 20px;
   .search_button {
     all: unset;
-    background-color: skyblue;
-    color: white;
+    background-color: #EDDADA;
+    color: #878484;
     padding: 15px 20px;
     font-size: 30px;
     cursor: pointer;
@@ -208,24 +208,24 @@ header {
   margin: 0 auto;
   border-radius: 20px;
   margin-top: 20px;
-  background-color: skyblue;
+  background-color: #2E3B31;
   padding: 0px 15px;
   ul {
-    width: 300px;
-    height: 450px;
-    border-radius: 30px;
+    width: 200px;
+    height: 330px;
+    border-radius: 5px;
     overflow: hidden;
     background-color: white;
     margin-top: 20px;
-    box-shadow: 5px 5px 0px 0px rgb(153, 124, 124);
+    box-shadow: 10px 10px 0px 0px black;
   }
   .movie-box {
     cursor: pointer;
     position: relative;
     img {
       display: block;
-      width:300px;
-      height:450px;
+      width:100%;
+      height:330px;
       object-fit:cover;
     }
     .movie-info {
@@ -234,22 +234,21 @@ header {
       }
     }
     &:hover {
-      li img {
-        filter: blur(4px);
-      }
+        margin-top: 10px;
+        width: 220px;
+        transition: 0.3s all;
       .movie-info {
         position: absolute;
-        top: 40%;
-        left: 8%;
+        bottom: 0%;
         box-shadow: 5px 5px 5px 5px black;
         p {
           font-family: 'MaplestoryOTFBold';
-          color: white;
-          background-color: skyblue;
+          color: #878484;
+          background-color: #EDDADA;
           
           padding: 20px 0px;
           text-align: center;
-          width: 250px;
+          width: 220px;
           
 
           font-weight: bolder;
