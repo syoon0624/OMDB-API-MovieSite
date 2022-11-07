@@ -2,6 +2,7 @@ import dataInHTML from "./makeSearchList.js";
 import fetchMovie from "./fetchMovie.js";
 import openModal from "./modalDetail.js";
 import loaders from "./loader.js";
+import inputToggle from "./inputToggle.js";
 
 // 전역 변수
 let page = 1;
@@ -9,9 +10,8 @@ let toggle = false;
 let input = '';
 
 // 데이터 불러오기 후 태그에 넣기
-const setDataList = async(value = '') => {
+export const setDataList = async(value = '') => {
     input = value;
-    // console.log(input);
     const loader = new loaders({
         el: '.movie-loading',
         color: '#2E3B31',
@@ -28,7 +28,7 @@ const setDataList = async(value = '') => {
 
         if(page === 1) {
             const infoEl = document.querySelector('.search-info');
-            infoEl.innerHTML = `
+            infoEl.innerHTML = ` 
                 <div class="search-total">
                     <strong> "${input}" Search Results : ${total}</strong>
                 </div>
@@ -39,47 +39,14 @@ const setDataList = async(value = '') => {
             alert('No Search Results!');
         } else {
             dataInHTML(data);
-            data.length === 10 ? page++ : page = 1;
+            Math.floor(total/10)+1 === page ?  page = -1 : page++;
         }
         loader.stop();
     }
-
-    // 첫 메인화면에서 검색 후, 검색 화면으로 전환하기 위한 태그 스위칭, 토글링
-    if(toggle === false ) {
-        const mainSearchCon = document.querySelector('.main-container');
-        const headerCon = document.querySelector('header');
-        const headerDivCon = document.querySelector('header > div');
-
-        mainSearchCon.remove();
-        headerCon.classList.remove('hidden');
-        headerDivCon.classList.add('header-container');
-        toggle = true;
-
-        document.querySelector('header > div > form > input').value = input;
-    }
 }
 
-// 영화 modal 창 띄우기
-const showData = async (ele) => {
-    const detail = await fetchMovie('',-1,ele.id);
-    console.log(detail.Runtime);
-    if(!document.querySelector('.modal')) {
-        openModal(detail);
-    }
-}
-
-// movie-box에 영화 id 검색해서 modal 창 띄우기
-const inDataIdList = () => {
-    const dataId = document.querySelectorAll('.movie-box');
-    console.log(dataId);
-    dataId.forEach(element => {
-        element.addEventListener('click',() => {
-            showData(element);
-        });
-    });
-}
-
-function scroll(){
+// 무한 스크롤 핸들러
+const scroll = () => {
     const endEl = document.querySelector('.end_scroll');
     // 스크롤 내릴 시, 정보 더 보여주기 기능
     const io = new IntersectionObserver (async (entry, observer) => {
@@ -92,14 +59,15 @@ function scroll(){
         target: 관찰 대상 요소(Element)
         time: 변경이 발생한 시간 정보(DOMHighResTimeStamp)
         */
-    const ioTarget = entry[0].target;
-    if (entry[0].isIntersecting) {
-            // console.log('현재 보이는 타겟:', ioTarget);
+    
+        const ioTarget = entry[0].target;
+        if (entry[0].isIntersecting) {
             io.unobserve(endEl);
-            if(page === 1) {
+            if(page <= 1) {
                 observer.disconnect();
             } else {
-                await setDataList(input).then(inDataIdList);
+                await setDataList(input)
+                await inDataIdList();
                 io.observe(endEl);
             }
         }
@@ -109,11 +77,36 @@ function scroll(){
     io.observe(endEl);
 }
 
-export default function (event) {
+// 영화 modal 창 띄우기
+const showData = async (ele) => {
+    const detail = await fetchMovie('',-1,ele.id);
+    console.log(detail.Runtime);
+    if(!document.querySelector('.modal')) {
+        openModal(detail);
+    }
+}
+
+// movie-box에 영화 id 검색해서 modal 창 띄우기
+export const inDataIdList = () => {
+    const dataId = document.querySelectorAll('.movie-box');
+    // console.log(dataId);
+    dataId.forEach(element => {
+        element.addEventListener('click',() => {
+            showData(element);
+        });
+    });
+}
+
+// 영화 정보 데이터 전달
+export default async (event) => {
     event.preventDefault();
+
     input = toggle ? 
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
+
+    toggle = inputToggle(toggle, input);
+
     try {
             if(input !== ''){
                 while(document.querySelector('.movie_list > ul') !== null) {
@@ -121,7 +114,9 @@ export default function (event) {
                     const child = document.querySelector('.movie_list > ul');
                     child.parentNode.removeChild(child);
                 }
-                setDataList(input).then(inDataIdList).then(scroll);
+                await setDataList(input);
+                await inDataIdList();
+                await scroll();
             } else {
                 alert("Please enter the KeyWord!");
             }

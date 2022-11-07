@@ -7,7 +7,7 @@ imgEl.src = logoimg;
 const headerImgEl = document.querySelector('.logo-wrapper');
 headerImgEl.style.backgroundImage = `url(${logoimg})`;
 
-(async function () {
+(async () => {
     try {
         // 태그가 2개(메인화면, 검색화면)이므로 queryselectorAll
         const form = document.querySelectorAll('.search_form');

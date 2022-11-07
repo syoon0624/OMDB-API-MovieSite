@@ -2,7 +2,7 @@ const url= 'https://www.omdbapi.com/';
 const key = process.env.MOVIE_API_KEY;
 const apiKey= `?apikey=${key}&`;
 
-export default async function (search = '', pageCount = 0, id = '') {
+export default async (search = '', pageCount = 0, id = '') => {
     const page = `&page=${pageCount}`;
     try {
         if(id === '') {

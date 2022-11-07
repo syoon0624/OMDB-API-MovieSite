@@ -4,8 +4,8 @@ export default (movieInfo) => {
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Close';
 
-    console.log(movieInfo);
-    
+    // console.log(movieInfo);
+
     const modalBack = document.createElement('div');
     modalBack.classList.add('modal__background');
 
