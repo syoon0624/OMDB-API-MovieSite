@@ -8,10 +8,10 @@ import inputToggle from "./inputToggle.js";
 let page = 1;
 let toggle = false;
 let input = '';
+let years = '';
 
 // 데이터 불러오기 후 태그에 넣기
-export const setDataList = async(value = '') => {
-    input = value;
+export const setDataList = async(value = '', year = '') => {
     const loader = new loaders({
         el: '.movie-loading',
         color: '#2E3B31',
@@ -21,7 +21,7 @@ export const setDataList = async(value = '') => {
         loader.start();
 
         const text = input? 's='+input : undefined;
-        const movie = await fetchMovie(text,page);
+        const movie = await fetchMovie(text, page, year);
 
         const data = movie.Search;
         const total = movie.totalResults ?? 0;
@@ -30,6 +30,7 @@ export const setDataList = async(value = '') => {
             const infoEl = document.querySelector('.search-info');
             infoEl.innerHTML = ` 
                 <div class="search-total">
+                    ${year !== '' ? '<strong>' + '"' + year + '" year </strong>' : ''}
                     <strong> "${input}" Search Results : ${total}</strong>
                 </div>
             `;
@@ -66,7 +67,7 @@ const scroll = () => {
             if(page <= 1) {
                 observer.disconnect();
             } else {
-                await setDataList(input)
+                await setDataList(input, years)
                 await inDataIdList();
                 io.observe(endEl);
             }
@@ -79,7 +80,7 @@ const scroll = () => {
 
 // 영화 modal 창 띄우기
 const showData = async (ele) => {
-    const detail = await fetchMovie('',-1,ele.id);
+    const detail = await fetchMovie('',-1,'',ele.id);
     console.log(detail.Runtime);
     if(!document.querySelector('.modal')) {
         openModal(detail);
@@ -105,7 +106,11 @@ export default async (event) => {
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
 
-    toggle = inputToggle(toggle, input);
+    years = toggle ?
+    document.querySelector('header > div > form > .year_input').value :
+    document.querySelector('.search-container > form > .year_input').value
+
+    toggle = inputToggle(toggle, input, years);
 
     try {
             if(input !== ''){
@@ -114,7 +119,7 @@ export default async (event) => {
                     const child = document.querySelector('.movie_list > ul');
                     child.parentNode.removeChild(child);
                 }
-                await setDataList(input);
+                await setDataList(input, years);
                 await inDataIdList();
                 await scroll();
             } else {

@@ -33,12 +33,24 @@ body {
   opacity: 0;
 }
 
-.clear {
+.close-year {
+  line-height: 45px;
   font-family: 'OTWelcomeBA';
   display: inline;
   cursor: pointer;
   font-size: 20px;
   margin-left: -20px;
+  padding-right: 10px;
+}
+
+.clear {
+  line-height: 45px;
+  font-family: 'OTWelcomeBA';
+  display: inline;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: -20px;
+  padding-right: 10px;
 }
 
 header {
@@ -91,11 +103,12 @@ header {
     background-color: rgb(87, 84, 84);
   }
   .search_form {
+    display: flex;
     border: 2px solid #EDDADA;
     border-radius: 20px;
     overflow: hidden;
     .search_input {
-      background-color:  rgb(87, 84, 84);;
+      background-color:  rgb(87, 84, 84);
       color: white;
       width: 60vw;
       font-size: 20px;
@@ -114,6 +127,31 @@ header {
       height: 100%;
       color: #878484;
       cursor: pointer;
+    }
+    .year-info {
+      font-family: 'OTWelcomeBA';
+      padding-left: 10px;
+      padding-right: 10px;
+      background: linear-gradient(90deg,#878484, #EDDADA);
+      line-height: 45px;
+      cursor: pointer;
+      &:hover {
+        background: black;
+        color: white;
+        transition: 0.5s;
+      }
+    }
+    .year_input {
+      width: 10vw;
+      border: none;
+      border-left: 2px solid #EDDADA;
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color:  rgb(87, 84, 84);
+      color: white;
+      &::placeholder {
+        color: white;
+      }
     }
   }
 }
@@ -157,6 +195,8 @@ header {
 
 .search-container .search_form {
   margin-top: 30px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   border: 3px solid #EDDADA;
   background-color: white;
@@ -181,7 +221,27 @@ header {
     padding: 10px 20px;
     border: none;
   }
+  .year-info {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: linear-gradient(90deg,#878484, #EDDADA);
+    line-height: 60px;
+    cursor: pointer;
+    &:hover {
+      background: black;
+      color: white;
+      transition: 0.5s;
+    }
+  }
+  .year_input {
+    width: 10vw;
+    border: none;
+    border-left: 2px solid #EDDADA;
+    font-size: 30px;
+    padding: 10px 20px;
+  }
 }
+
 .modal {
   font-family: 'OTWelcomeBA';
   z-index: 2;
