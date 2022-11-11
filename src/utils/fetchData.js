@@ -34,7 +34,7 @@ export const setDataList = async() => {
                 infoEl.innerHTML = ` 
                     <div class="search-total">
                         ${years !== '' ? '<strong>' + '"' + years + '" year </strong>' : ''}
-                        <strong> "${input}" Search Results : ${total}</strong>
+                        <strong> "${input}" ${type} Search Results : ${total}</strong>
                     </div>
                 `;
             }
