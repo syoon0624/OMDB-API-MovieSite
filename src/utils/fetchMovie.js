@@ -2,14 +2,14 @@ const url= 'https://www.omdbapi.com/';
 const key = process.env.MOVIE_API_KEY;
 const apiKey= `?apikey=${key}&`;
 
-export default async (search = '', pageCount = 0, year = '', id = '') => {
-    const page = `&page=${pageCount}`;
+export default async (search = '', pageCount = 0, year = '',type = 'movie', id = '') => {
+    const page = `&page=${pageCount}&type=${type === '' ? type = movie: type}`;
     try {
         if(id === '' && year === '') {
             const response = await fetch(url + apiKey + search + page);
-            // console.log(response);
+            //console.log(response);
             const data = await response.json();
-            // console.log(data);
+            console.log(data);
             return data;
         } else if (year !== '') {
             const response = await fetch(url + apiKey + search + `&y=${year}` + page);
@@ -22,6 +22,7 @@ export default async (search = '', pageCount = 0, year = '', id = '') => {
             const data = await response.json();
             return data;
         }
+        
     } catch (err){
         alert('영화정보를 불러올 수 없습니다!', err);
     }  

@@ -1,11 +1,8 @@
 export default class {
   constructor(options) {
-    const {
-      el: element = null,
-      size = '100',
-      width = '20',
-      color = '#333',
-    } = options;
+    const { 
+			el: element = null, 
+		} = options;
     this.el = document.querySelector(element);
     this.el.innerHTML = `
       <svg viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715">

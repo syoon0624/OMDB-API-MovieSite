@@ -9,38 +9,45 @@ let page = 1;
 let toggle = false;
 let input = '';
 let years = '';
+let type = '';
+let pageCount = 1;
 
 // 데이터 불러오기 후 태그에 넣기
-export const setDataList = async(value = '', year = '') => {
+export const setDataList = async() => {
     const loader = new loaders({
         el: '.movie-loading',
-        color: '#2E3B31',
     });
 
     if(input !== '') {
         loader.start();
 
+        let err = '';
         const text = input? 's='+input : undefined;
-        const movie = await fetchMovie(text, page, year);
+        const data = [];
 
-        const data = movie.Search;
-        const total = movie.totalResults ?? 0;
+        for(let i = 1; i <= pageCount; i++) {
+            const movie = await fetchMovie(text, page, years, type);
+            const total = movie.totalResults ?? 0;
 
-        if(page === 1) {
-            const infoEl = document.querySelector('.search-info');
-            infoEl.innerHTML = ` 
-                <div class="search-total">
-                    ${year !== '' ? '<strong>' + '"' + year + '" year </strong>' : ''}
-                    <strong> "${input}" Search Results : ${total}</strong>
-                </div>
-            `;
+            if(page === 1) {
+                const infoEl = document.querySelector('.search-info');
+                infoEl.innerHTML = ` 
+                    <div class="search-total">
+                        ${years !== '' ? '<strong>' + '"' + years + '" year </strong>' : ''}
+                        <strong> "${input}" Search Results : ${total}</strong>
+                    </div>
+                `;
+            }
+            if(movie.Search === undefined) {
+                err = 'No Found Page';
+            } else {
+                data.push(movie.Search);
+                Math.floor(total/10)+1 === page ?  page = -1 : page++;
+            }
         }
-
-        if(data === undefined) {
-            alert('No Search Results!');
-        } else {
-            dataInHTML(data);
-            Math.floor(total/10)+1 === page ?  page = -1 : page++;
+        data.forEach(ele => dataInHTML(ele));
+        if(err !== '' && page !== -1) {
+            alert(err);
         }
         loader.stop();
     }
@@ -80,7 +87,7 @@ const scroll = () => {
 
 // 영화 modal 창 띄우기
 const showData = async (ele) => {
-    const detail = await fetchMovie('',-1,'',ele.id);
+    const detail = await fetchMovie('',-1,'',type,ele.id);
     console.log(detail.Runtime);
     if(!document.querySelector('.modal')) {
         openModal(detail);
@@ -101,16 +108,38 @@ export const inDataIdList = () => {
 // 영화 정보 데이터 전달
 export default async (event) => {
     event.preventDefault();
+    
+    // 중복 클릭 처리
+    if(
+        toggle === true && 
+        input === document.querySelector('header > div > form > input').value && 
+        years === document.querySelector('header > div > form > ul > li .year_input').value &&
+        type ===  document.querySelector('header > div > form > ul > #type > .type').value
+        ) {
+        console.log(input);
+        return;
+    }
 
+    // 화면 전환
     input = toggle ? 
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
 
     years = toggle ?
-    document.querySelector('header > div > form > .year_input').value :
-    document.querySelector('.search-container > form > .year_input').value
+    document.querySelector('header > div > form > ul > li .year_input').value :
+    document.querySelector('.search-container > form > ul > li > .year_input').value
 
-    toggle = inputToggle(toggle, input, years);
+    type = toggle ? 
+    document.querySelector('header > div > form > ul > #type > .type').value :
+    document.querySelector('.search-container > form > ul > #type > .type').value
+
+    pageCount = toggle ?
+    document.querySelector('header > div > form > ul > #length > .length').value :
+    document.querySelector('.search-container > form > ul > #length > .length').value
+
+    pageCount = parseInt(pageCount) / 10;
+
+    toggle = inputToggle(toggle, input);
 
     try {
             if(input !== ''){
@@ -119,7 +148,7 @@ export default async (event) => {
                     const child = document.querySelector('.movie_list > ul');
                     child.parentNode.removeChild(child);
                 }
-                await setDataList(input, years);
+                await setDataList();
                 await inDataIdList();
                 await scroll();
             } else {

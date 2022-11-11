@@ -1,22 +1,6 @@
 export default () => {
     // 태그 숨김, 드러냄 작동 관리
-    const yearEl = document.querySelectorAll('.year-info');
-    const yearInputEl = document.querySelectorAll('.year_input');
-    const closeYearEl = document.querySelectorAll('.close-year');
-
-    for(let i = 0; i < 2; i++) {
-        yearEl[i].addEventListener('click', e => {
-            e.target.classList.add('hidden');
-            yearInputEl[i].classList.remove('hidden');
-            closeYearEl[i].classList.remove('hidden');
-        })
-        closeYearEl[i].addEventListener('click', e => {
-            e.target.classList.add('hidden');
-            yearInputEl[i].classList.add('hidden');
-            yearEl[i].classList.remove('hidden');
-        })
-    }
-    
+    const yearEl = document.querySelectorAll('.option-ul');
     
 
     const inputEl = document.querySelectorAll('input');

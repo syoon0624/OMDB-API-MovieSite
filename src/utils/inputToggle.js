@@ -1,5 +1,5 @@
 // 첫 메인화면에서 검색 후, 검색 화면으로 전환하기 위한 태그 스위칭, 토글링
-export default (toggle, input, year) => {
+export default (toggle, input) => {
         if(toggle === false ) {
             const mainSearchCon = document.querySelector('.main-container');
             const headerCon = document.querySelector('header');
@@ -11,7 +11,6 @@ export default (toggle, input, year) => {
             toggle = true;
 
             document.querySelector('header > div > form > input').value = input;
-            document.querySelector('header > div > form > .year_input').value = year;
     }
     return toggle;
 }

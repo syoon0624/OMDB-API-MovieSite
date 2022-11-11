@@ -29,6 +29,7 @@ body {
 .hidden {
   display: none;
   max-height: 0px;
+  max-width: 10px;
   overflow: hidden;
   opacity: 0;
 }
@@ -41,6 +42,9 @@ body {
   font-size: 20px;
   margin-left: -20px;
   padding-right: 10px;
+  &:hover {
+    color: skyblue;
+  }
 }
 
 .clear {
@@ -103,10 +107,10 @@ header {
     background-color: rgb(87, 84, 84);
   }
   .search_form {
+    position: relative;
     display: flex;
     border: 2px solid #EDDADA;
     border-radius: 20px;
-    overflow: hidden;
     .search_input {
       background-color:  rgb(87, 84, 84);
       color: white;
@@ -114,6 +118,7 @@ header {
       font-size: 20px;
       padding: 10px 20px;
       border: none;
+      border-radius: 20px;
     }
     input::placeholder{
       color: white;
@@ -127,18 +132,37 @@ header {
       height: 100%;
       color: #878484;
       cursor: pointer;
+      border-radius: 0 15px 15px 0;
     }
-    .year-info {
-      font-family: 'OTWelcomeBA';
+    .option {
+      img {
+        display: block;
+      }
       padding-left: 10px;
       padding-right: 10px;
       background: linear-gradient(90deg,#878484, #EDDADA);
-      line-height: 45px;
+      height: 44px;
+      display: flex;
+      text-align: center;
       cursor: pointer;
-      &:hover {
-        background: black;
-        color: white;
-        transition: 0.5s;
+    }
+    .option-ul {
+      background-color: white;
+      position: absolute;
+      right: -2vw;
+      top: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .option-li {
+        border: 1px solid red;
+        .year_input {
+          width: 5vw;
+          border: none;
+          border-left: 2px solid #EDDADA;
+          font-size: 10px;
+          padding: 5px 5px;
+        }
       }
     }
     .year_input {
@@ -194,10 +218,10 @@ header {
 }
 
 .search-container .search_form {
+  position: relative;
   margin-top: 30px;
   display: flex;
   align-items: center;
-  overflow: hidden;
   border: 3px solid #EDDADA;
   background-color: white;
   border-radius: 20px;
@@ -210,35 +234,49 @@ header {
     font-size: 30px;
     cursor: pointer;
     font-family: 'MaplestoryOTFBold';
+    border-radius: 0px 10px 10px 0px;
   }
   .search_button:hover {
     color: black;
   }
   .search_input {
+    border-radius: 20px;
     background-color: white;
     width: 60vw;
     font-size: 30px;
     padding: 10px 20px;
     border: none;
   }
-  .year-info {
+  .option {
+    img {
+      display: block;
+    }
     padding-left: 10px;
     padding-right: 10px;
     background: linear-gradient(90deg,#878484, #EDDADA);
-    line-height: 60px;
+    height: 60px;
+    display: flex;
+    text-align: center;
     cursor: pointer;
-    &:hover {
-      background: black;
-      color: white;
-      transition: 0.5s;
+  }
+  .option-ul {
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: -100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  .option-li {
+    border: 1px solid red;
+    .year_input {
+      width: 5vw;
+      border: none;
+      border-left: 2px solid #EDDADA;
+      font-size: 10px;
+      padding: 5px 5px;
     }
   }
-  .year_input {
-    width: 10vw;
-    border: none;
-    border-left: 2px solid #EDDADA;
-    font-size: 30px;
-    padding: 10px 20px;
   }
 }
 
