@@ -141,40 +141,46 @@ header {
       padding-left: 10px;
       padding-right: 10px;
       background: linear-gradient(90deg,#878484, #EDDADA);
-      height: 44px;
+      height: 45px;
       display: flex;
       text-align: center;
       cursor: pointer;
     }
     .option-ul {
+      box-shadow: 10px 10px 0px 0px black;
+      font-family: 'MaplestoryOTFBold';
+      font-size: 30px;
+      padding: 20px;
       background-color: white;
       position: absolute;
-      right: -2vw;
+      right: 0;
       top: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .option-li {
-        border: 1px solid red;
-        .year_input {
-          width: 5vw;
-          border: none;
-          border-left: 2px solid #EDDADA;
-          font-size: 10px;
-          padding: 5px 5px;
-        }
+
+      .top {
+        margin-top: 10px;
+        border-top: 2px solid black;
       }
-    }
-    .year_input {
-      width: 10vw;
-      border: none;
-      border-left: 2px solid #EDDADA;
-      font-size: 20px;
-      padding: 10px 20px;
-      background-color:  rgb(87, 84, 84);
-      color: white;
-      &::placeholder {
-        color: white;
+      .option-li {
+        padding: 10px;
+        font-size: 20px;
+        font-family: 'OTWelcomeBA';
+        .year_input {
+          width: 8vw;
+          border: 1px solid black;
+          border-radius: 3px;
+          background-color: white;
+          font-size: 15px;
+          padding: 5px 5px;
+          &::placeholder {
+            color: gray;
+          }
+        }
+        select {
+          padding: 5px;
+        }
       }
     }
   }
@@ -260,23 +266,41 @@ header {
     cursor: pointer;
   }
   .option-ul {
+    box-shadow: 10px 10px 0px 0px black;
+    font-family: 'MaplestoryOTFBold';
+    font-size: 30px;
+    padding: 20px;
     background-color: white;
     position: absolute;
     right: 0;
-    top: -100px;
+    top: -235px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  .option-li {
-    border: 1px solid red;
-    .year_input {
-      width: 5vw;
-      border: none;
-      border-left: 2px solid #EDDADA;
-      font-size: 10px;
-      padding: 5px 5px;
+
+    .top {
+      margin-top: 10px;
+      border-top: 2px solid black;
     }
-  }
+    .option-li {
+      padding: 10px;
+      font-size: 20px;
+      font-family: 'OTWelcomeBA';
+      .year_input {
+        width: 8vw;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: white;
+        font-size: 15px;
+        padding: 5px 5px;
+        &::placeholder {
+          color: gray;
+        }
+      }
+      select {
+        padding: 5px;
+      }
+    }
   }
 }
 
