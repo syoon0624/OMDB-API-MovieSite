@@ -4,7 +4,7 @@ export default async (movieInfo) => {
     modal.classList.add('modal');
 
     const closeButton = document.createElement('button');
-    closeButton.textContent = 'Close';
+    closeButton.textContent = 'X';
 
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal__content');
@@ -16,16 +16,16 @@ export default async (movieInfo) => {
     modalContent.innerHTML += `
             <div class="info-wrap">
                 <div class="img">
-                    <img alt="movie-img" src=${movieInfo.Poster.replace('SX500', 'SX250')}>
+                    <img alt="movie-img" src=${movieInfo.Poster.replace('SX300', 'SX450')}>
                 </div>
                 <ul class="info">
                     <h1>${movieInfo.Title}</h1>
                     <li class="summary">
-                        <span>${movieInfo.Released}, </span>
-                        <span>${movieInfo.Runtime}, </span>
-                        <span>${movieInfo.Country}, </span>
+                        <span>${movieInfo.Released} / </span>
+                        <span>${movieInfo.Runtime} / </span>
+                        <span>${movieInfo.Country} / </span>
                         <span>${movieInfo.Language} </span>
-                    </li> 
+                    </li>
                     <li class="plot">
                         <p>${movieInfo.Plot}</p>
                     </li>
