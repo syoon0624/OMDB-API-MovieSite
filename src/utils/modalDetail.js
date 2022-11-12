@@ -1,4 +1,3 @@
-
 export default async (movieInfo) => {
     const body = document.body;
     const modal = document.createElement('div');
@@ -33,7 +32,7 @@ export default async (movieInfo) => {
                     <li class="ratings">
                         <span class="title">Ratings</span>
                         ${movieInfo.Ratings.map(ele => {
-                            return '<span>' + `<img src="./images/${ele.Source}.png" alt="rating-image"/>` + ': ' + ele.Value + '</span>';
+                            return '<span>' + `<img src="../images/${ele.Source}.png" alt="rating-image"/>` + ': ' + ele.Value + '</span>';
                         }).join('')}
                     </li>
                     <li class="actors">
