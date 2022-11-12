@@ -9,7 +9,6 @@ export default async (search = '', pageCount = 0, year = '',type = 'movie', id =
             const response = await fetch(url + apiKey + search + page);
             //console.log(response);
             const data = await response.json();
-            console.log(data);
             return data;
         } else if (year !== '') {
             const response = await fetch(url + apiKey + search + `&y=${year}` + page);
