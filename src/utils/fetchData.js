@@ -87,15 +87,20 @@ const scroll = () => {
 
 // 영화 modal 창 띄우기
 const showData = async (ele) => {
+    const loader = new loaders({
+        el: '.movie-loading',
+    });
+    loader.start();
     const detail = await fetchMovie('',-1,'',type,ele.id);
     console.log(detail.Runtime);
     if(!document.querySelector('.modal')) {
         openModal(detail);
     }
+    loader.stop();
 }
 
 // movie-box에 영화 id 검색해서 modal 창 띄우기
-export const inDataIdList = () => {
+const inDataIdList = () => {
     const dataId = document.querySelectorAll('.movie-box');
     // console.log(dataId);
     dataId.forEach(element => {

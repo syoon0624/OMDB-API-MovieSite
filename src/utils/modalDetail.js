@@ -1,59 +1,75 @@
-export default (movieInfo) => {
+export default async (movieInfo) => {
+    const body = document.body;
     const modal = document.createElement('div');
     modal.classList.add('modal');
+
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Close';
-
-    // console.log(movieInfo);
-
-    const modalBack = document.createElement('div');
-    modalBack.classList.add('modal__background');
 
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal__content');
 
-    const title = document.createElement('h1');
-    title.textContent = movieInfo.Title;
+    console.log(movieInfo);
 
-    const deImg = document.createElement('img');
-    deImg.src = movieInfo.Poster.replace('SX300', 'SX250');
-
-    const year = document.createElement('strong');
-    year.textContent = `Year : ${movieInfo.Year}`;
-    year.style = 'display: block';
-
-    const plot = document.createElement('p');
-    plot.style = 'display: block';
-    const plotStrong = document.createElement('strong');
-    plotStrong.style = 'display: block';
-    plotStrong.textContent = 'Movie Plot';
-    plot.textContent = movieInfo.Plot;
-
-    const lan = document.createElement('strong');
-    lan.textContent = `Language: ${movieInfo.Language}`;
-    lan.style = 'display: block';
-
-    const runtime = document.createElement('strong');
-    runtime.textContent = `Runtime: ${movieInfo.Runtime}`
-    runtime.style = 'display: block';
-
-    modal.append(modalBack);
+    // modal 생성
     modal.append(modalContent);
+    modalContent.innerHTML += `
+            <div class="info-wrap">
+                <div class="img">
+                    <img alt="movie-img" src=${movieInfo.Poster.replace('SX500', 'SX250')}>
+                </div>
+                <ul class="info">
+                    <h1>${movieInfo.Title}</h1>
+                    <li class="summary">
+                        <span>${movieInfo.Released}, </span>
+                        <span>${movieInfo.Runtime}, </span>
+                        <span>${movieInfo.Country}, </span>
+                        <span>${movieInfo.Language} </span>
+                    </li> 
+                    <li class="plot">
+                        <p>${movieInfo.Plot}</p>
+                    </li>
+                    <li class="ratings">
+                        <span class="title">Ratings</span>
+                        ${movieInfo.Ratings.map(ele => {
+                            return '<span>' + ele.Source + ': ' + ele.Value + '</span>';
+                        }).join('')}
+                    </li>
+                    <li class="actors">
+                        <span class="title">Actors</span>
+                        <span>${movieInfo.Actors}</span>
+                    </li>
+                    <li class="director">
+                        <span class="title">Director</span>
+                        <span>${movieInfo.Director}</span>
+                    </li>
+                    <li class="production">
+                        <span class="title">Production</span>
+                        <span>${movieInfo.Production}</span>
+                    </li>
+                    <li class="genre">
+                        <span class="title">Genre</span>
+                        <spna>${movieInfo.Genre}</span>
+                    </li>
+                </div>
+            </div>
+    `;
 
-    modalContent.append(title);
-    modalContent.append(deImg);
-    modalContent.append(year);
-    modalContent.append(plotStrong);
-    modalContent.append(plot);
-    modalContent.append(lan);
-    modalContent.append(runtime);
     modalContent.append(closeButton);
-    
     document.body.append(modal);
+
+    body.classList.add('fixed');
+
+    // 창 닫기
     closeButton.addEventListener("click", () => {
         modal.remove();
+        body.classList.remove('fixed');
     });
-    modalBack.addEventListener("click", () => {
-        modal.remove();
+    
+    modal.addEventListener("click", (e) => {
+        if(e.target.className === e.currentTarget.className) {
+             modal.remove();
+             body.classList.remove('fixed');
+        } 
     });
 }

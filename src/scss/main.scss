@@ -22,8 +22,14 @@
   }
 }
 
+.fixed {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   background-color: rgb(87, 84, 84);
+  position: relative;
 }
 
 .hidden {
@@ -315,27 +321,55 @@ header {
   justify-content: center;
   align-items: center;
   position: fixed;
+  overflow: scroll;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
-  
-.modal__background {
   background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-  
-.modal__content {
-  text-align: center;
-  position: relative;
-  background-color: white;
-  border-radius: 10px;
-  top: 0;
-  padding: 10px 25px;
-  width: 40%;
+  .modal__content {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px 25px;
+    width: 70%;
+
+    .info-wrap {
+      display: flex;
+      justify-content: space-between;
+      .img {
+
+      }
+      li {
+        padding: 10px 0px;
+        .title {
+          font-family: 'MaplestoryOTFBold';
+          font-size: 20px;
+          display: block;
+        }
+      }
+      .ratings {
+        display: flex;
+        flex-direction: column;
+      }
+      .plot {
+        color: gray;
+      }
+      .info {
+        margin-left: 20px;
+        h1 {
+          font-family: 'MaplestoryOTFBold';
+          font-size: 30px;
+        }
+        .summary {
+          display: flex;
+          color: orange;
+        }
+      }
+    }
+  }
 }
 
 .movie_list {

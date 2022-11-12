@@ -17,7 +17,7 @@ export default async (search = '', pageCount = 0, year = '',type = 'movie', id =
             // console.log(data);
             return data;
         } else if (id !== '') {
-            const response = await fetch(url + apiKey + 'i=' + id);
+            const response = await fetch(url + apiKey + 'i=' + id + '&plot=full');
             const data = await response.json();
             return data;
         }
