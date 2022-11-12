@@ -1,5 +1,6 @@
 @import 'reset.scss';
 @import 'spinner.scss';
+@import 'responsive.scss';
 
 @font-face {
   font-family: 'OTWelcomeBA';
@@ -70,7 +71,6 @@ header {
   top: 0;
   width: 100%;
   z-index: 1;
-
   .logo-wrapper {
     border: 2px solid #EDDADA;
     text-decoration: none;
@@ -460,6 +460,57 @@ header {
 
           font-weight: bolder;
           font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+
+@include mobile {
+  .logo-wrapper {
+    display: none;
+  }
+  .search-container {
+    .search_form {
+      border-radius: 10px;
+      .search_input {
+        font-size: 10px;
+        width: 40vw;
+      }
+      .option {
+        img {
+          display: block;
+          padding: 5px;
+        }
+        background: linear-gradient(90deg,#878484, #EDDADA);
+        height: 40px;
+        display: flex;
+        text-align: center;
+        cursor: pointer;
+      }
+      .search_button {
+        all: unset;
+        height: 100%;
+        background-color: #EDDADA;
+        color: #878484;
+        padding: 8.5px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        font-family: 'MaplestoryOTFBold';
+        border-radius: 0px 5px 5px 0px;
+        border-bottom: 1.5px solid #EDDADA;
+      }
+    }
+  }
+  .modal__content {
+    padding: 0;
+    .info-wrap {
+      flex-wrap: wrap;
+      .img {
+        margin-bottom: 20px;
+        img {
+          width: 100%;
         }
       }
     }
