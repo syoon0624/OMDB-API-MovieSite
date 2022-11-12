@@ -1,3 +1,15 @@
+import imdb from '../images/Internet Movie Database.png';
+import metacritic from '../images/Metacritic.png';
+import rotten from '../images/Rotten Tomatoes.png';
+
+// ratings 이미지 불러온 후, 객체화
+const ratingImgs = {
+    'Internet Movie Database': imdb,
+    'Metacritic': metacritic,
+    'Rotten Tomatoes': rotten
+}
+
+// console.log(imdb);
 export default async (movieInfo) => {
     const body = document.body;
     const modal = document.createElement('div');
@@ -31,9 +43,11 @@ export default async (movieInfo) => {
                     </li>
                     <li class="ratings">
                         <span class="title">Ratings</span>
+                        <div class="ratings-wrap">
                         ${movieInfo.Ratings.map(ele => {
-                            return '<span>' + `<img src="../images/${ele.Source}.png" alt="rating-image"/>` + ': ' + ele.Value + '</span>';
+                            return '<span>' + `<img src="${ratingImgs[ele.Source]}" alt="rating-image"/>` + ele.Value + '</span>';
                         }).join('')}
+                        </div>
                     </li>
                     <li class="actors">
                         <span class="title">Actors</span>

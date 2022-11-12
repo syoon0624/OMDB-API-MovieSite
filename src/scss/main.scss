@@ -342,9 +342,9 @@ header {
     button {
       font-family: 'MaplestoryOTFBold';
       font-size: 30px;
-      position: fixed;
-      top: 5%;
-      right: 5%;
+      position: absolute;
+      top: 3%;
+      right: 2%;
       border: none;
       background: white;
       cursor: pointer;
@@ -374,6 +374,19 @@ header {
       .ratings {
         display: flex;
         flex-direction: column;
+        .ratings-wrap {
+          display: flex;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+          }
+          img {
+            height: 30px;
+            margin-right: 5px;
+          }
+        }
       }
       .plot {
         font-family: Arial;
