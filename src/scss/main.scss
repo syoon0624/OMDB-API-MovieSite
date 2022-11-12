@@ -53,7 +53,7 @@ body {
   display: inline;
   cursor: pointer;
   font-size: 20px;
-  margin-left: -20px;
+  margin-left: -30px;
   padding-right: 10px;
 }
 
@@ -137,9 +137,8 @@ header {
     .option {
       img {
         display: block;
+        padding: 10px;
       }
-      padding-left: 10px;
-      padding-right: 10px;
       background: linear-gradient(90deg,#878484, #EDDADA);
       height: 45px;
       display: flex;
@@ -228,9 +227,10 @@ header {
   margin-top: 30px;
   display: flex;
   align-items: center;
-  border: 3px solid #EDDADA;
-  background-color: white;
-  border-radius: 20px;
+  border: none;
+  // border: 3px solid #EDDADA;
+  // background-color: white;
+  // border-radius: 20px;
   .search_button {
     all: unset;
     height: 100%;
@@ -240,22 +240,24 @@ header {
     font-size: 30px;
     cursor: pointer;
     font-family: 'MaplestoryOTFBold';
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 5px 5px 0px;
+    border-bottom: 1.5px solid #EDDADA;
   }
   .search_button:hover {
     color: black;
   }
   .search_input {
-    border-radius: 20px;
+    border-radius: 5px 0 0 5px;
     background-color: white;
+    border: 3px solid #EDDADA;
     width: 60vw;
     font-size: 30px;
     padding: 10px 20px;
-    border: none;
   }
   .option {
     img {
       display: block;
+      padding: 10px;
     }
     padding-left: 10px;
     padding-right: 10px;
@@ -263,6 +265,8 @@ header {
     height: 60px;
     display: flex;
     text-align: center;
+    margin-right: 10px;
+    border-radius: 5px;
     cursor: pointer;
   }
   .option-ul {
@@ -272,7 +276,7 @@ header {
     padding: 20px;
     background-color: white;
     position: absolute;
-    right: 0;
+    left: 0;
     top: -235px;
     display: flex;
     flex-direction: column;
