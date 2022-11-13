@@ -23,12 +23,13 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
         const form = document.querySelectorAll('.search_form');
         
         formHandler();
-        if(window.location.search !== '') {
+        await form.forEach(ele => {
+            ele.addEventListener('submit', fetchData);
+            return;
+        });
+
+        if(window.location.search !== ''){
             fetchData();
-        } else {
-            await form.forEach(ele => {
-                ele.addEventListener('submit', fetchData);
-            });
         }
         
     } catch (err) {

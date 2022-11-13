@@ -147,7 +147,7 @@ const inDataIdList = () => {
 
 // 영화 정보 데이터 전달
 export default async (event) => {
-    
+    event === undefined ? null : event.preventDefault() 
     // 중복 클릭 처리
     if(
         toggle === true && 
@@ -182,7 +182,6 @@ export default async (event) => {
 
     try {
             if(input !== ''){
-                event.preventDefault();
                 while(document.querySelector('.movie_list > ul') !== null) {
                     page = 1;
                     allData = [];
