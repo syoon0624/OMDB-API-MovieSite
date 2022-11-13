@@ -75,6 +75,7 @@ header {
     border: 2px solid #EDDADA;
     border-radius: 20px;
     .search_input {
+      font-family: sans-serif;
       background-color:  rgb(87, 84, 84);
       color: white;
       width: 60vw;
@@ -85,7 +86,7 @@ header {
       line-height: -5px;
     }
     input::placeholder{
-      color: white;
+      color: #EDDADA;
     }
     .search_button {
       font-family: 'MaplestoryOTFBold';
@@ -148,6 +149,7 @@ header {
         font-size: 20px;
         font-family: 'OTWelcomeBA';
         .year_input {
+          font-family: sans-serif;
           width: 8vw;
           border: 1px solid black;
           border-radius: 3px;

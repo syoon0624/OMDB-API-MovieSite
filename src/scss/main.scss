@@ -70,8 +70,8 @@ body {
     height: 100%;
     background-color: #EDDADA;
     color: #878484;
-    padding: 15px 20px;
-    font-size: 30px;
+    padding: 20px 10px;
+    font-size: 25px;
     cursor: pointer;
     font-family: 'MaplestoryOTFBold';
     border-radius: 0px 5px 5px 0px;
@@ -81,21 +81,25 @@ body {
     color: black;
   }
   .search_input {
+    font-family: sans-serif;
+    outline: none;
     border-radius: 5px 0 0 5px;
     background-color: white;
     border: 3px solid #EDDADA;
     width: 60vw;
-    font-size: 30px;
-    padding: 10px 20px;
+    font-size: 25px;
+    padding: 15px 30px;
+    &::placeholder {
+      color: gray;
+    }
   }
   .option {
     img {
       display: block;
       padding: 10px;
     }
-    padding-left: 10px;
-    padding-right: 10px;
-    background: linear-gradient(90deg,#878484, #EDDADA);
+    background: white;
+    border: 3px solid #EDDADA;
     height: 60px;
     display: flex;
     text-align: center;
@@ -111,7 +115,7 @@ body {
     background-color: white;
     position: absolute;
     left: 0;
-    top: -235px;
+    top: -250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -141,6 +145,7 @@ body {
       font-size: 20px;
       font-family: 'OTWelcomeBA';
       .year_input {
+        font-family: sans-serif;
         width: 8vw;
         border: 1px solid black;
         border-radius: 3px;
