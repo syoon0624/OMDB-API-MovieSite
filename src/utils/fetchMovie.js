@@ -6,8 +6,6 @@ export default async (pageCount = 0, id = '') => {
     const urlParams 
         = window.location.search
     let search = urlParams.replace('?','');
-    // ?s=input&type=movie&y=2020
-    console.log(urlParams);
     const page = `&page=${pageCount}`;
     try {
         if(id === '') {

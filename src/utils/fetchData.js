@@ -147,15 +147,15 @@ const inDataIdList = () => {
 
 // 영화 정보 데이터 전달
 export default async (event) => {
-    event === undefined ? null : event.preventDefault() 
+    event === undefined ? null : event.preventDefault()
+
     // 중복 클릭 처리
     if(
         toggle === true && 
         input === document.querySelector('header > div > form > input').value && 
-        years === document.querySelector('header > div > form > ul > li .year_input').value &&
-        type ===  document.querySelector('header > div > form > ul > #type > .type').value
+        years === document.querySelector('#year-header').value &&
+        type ===  document.querySelector('header > div > form > ul > div > #type > .type').value
         ) {
-        console.log(input);
         return;
     }
 
@@ -165,16 +165,18 @@ export default async (event) => {
     document.querySelector('.search-container > form > input').value;
 
     years = toggle ?
-    document.querySelector('header > div > form > ul > li .year_input').value :
-    document.querySelector('.search-container > form > ul > li > .year_input').value
+    document.querySelector('#year-header').value :
+    document.querySelector('.search-container > form > ul > div > li > .year_input').value
 
     type = toggle ? 
-    document.querySelector('header > div > form > ul > #type > .type').value :
-    document.querySelector('.search-container > form > ul > #type > .type').value
+    document.querySelector('header > div > form > ul > div > #type > .type').value :
+    document.querySelector('.search-container > form > ul > div > #type > .type').value
 
     pageCount = toggle ?
-    document.querySelector('header > div > form > ul > #length > .length').value :
-    document.querySelector('.search-container > form > ul > #length > .length').value
+    document.querySelector('header > div > form > ul > div > #length > .length').value :
+    document.querySelector('.search-container > form > ul > div > #length > .length').value
+
+    console.log(years);
 
     pageCount = parseInt(pageCount) / 10;
 

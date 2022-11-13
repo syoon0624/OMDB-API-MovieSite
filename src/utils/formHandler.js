@@ -7,12 +7,26 @@ export default () => {
     const inputEl = document.querySelectorAll('input');
     const clearEl = document.querySelectorAll('#clear');
 
+    const clearBtnEl = document.querySelectorAll('.option-clear');
+    const yearsOptionEl = document.querySelectorAll('.year_input');
+    const lengthOptionEl = document.querySelectorAll('.length');
+    const typeOptionEl = document.querySelectorAll('.type');
+
     for(let i = 0; i < 2; i++) {
         optionEl[i].addEventListener('click', () => {
             toggle ? (optionUl[i].classList.remove('hidden'), toggle = false) : 
             (optionUl[i].classList.add('hidden'), toggle = true);
         })
     }
+
+    // for(let i = 0; i < 2; i++) {
+    //     clearBtnEl[i].addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         yearsOptionEl[i].value = '';
+    //         lengthOptionEl[i].value = '10';
+    //         typeOptionEl[i].value = 'movie';
+    //     })
+    // }
 
     inputEl.forEach(ele => {
         ele.addEventListener('focus', () => {

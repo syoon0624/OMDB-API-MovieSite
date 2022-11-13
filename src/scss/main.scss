@@ -175,6 +175,23 @@ header {
       cursor: pointer;
     }
     .option-ul {
+      div {
+        position: relative;
+        button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: 16px;
+          border: 2px solid black;
+          border-radius: 5px;
+          background-color: white;
+          cursor: pointer;
+          &:hover {
+            border: 2px solid orange;
+            color: orange;
+          }
+        }
+      }
       box-shadow: 10px 10px 0px 0px black;
       font-family: 'MaplestoryOTFBold';
       font-size: 30px;
@@ -313,7 +330,23 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    div {
+      position: relative;
+      button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 16px;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: white;
+        cursor: pointer;
+        &:hover {
+          border: 2px solid orange;
+          color: orange;
+        }
+      }
+    }
     .top {
       margin-top: 10px;
       border-top: 2px solid black;
