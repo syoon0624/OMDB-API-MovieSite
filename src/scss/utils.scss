@@ -1,0 +1,51 @@
+// 전체 효과, 폰트, 재사용 스타일
+@font-face {
+  font-family: 'OTWelcomeBA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fixed {
+  height: 100%;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+  max-height: 0px;
+  max-width: 10px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.close-year {
+  line-height: 45px;
+  font-family: 'OTWelcomeBA';
+  display: inline;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: -20px;
+  padding-right: 10px;
+  &:hover {
+    color: skyblue;
+  }
+}
+
+.clear {
+  line-height: 45px;
+  font-family: 'OTWelcomeBA';
+  display: inline;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: -30px;
+  padding-right: 10px;
+}
+  

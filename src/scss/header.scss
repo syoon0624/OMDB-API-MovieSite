@@ -1,0 +1,170 @@
+// 검색 창에서의 헤더 스타일
+header {
+  border-bottom: 2px solid #EDDADA;
+  background-color: rgb(87, 84, 84);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  div {
+    position: relative;
+    .sort {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      bottom: 0;
+      right: 0;
+      border-left: 3px solid #EDDADA;
+      button {
+        padding-top: 5px;
+        border: none;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        &:hover {
+          color: orange;
+        }
+      }
+    }
+  }
+  .logo-wrapper {
+    border: 2px solid #EDDADA;
+    text-decoration: none;
+    width: 53px;
+    //background-image: url("../images/logo.png");
+    background-size: 53px 46px;
+    background-repeat: no-repeat;
+    font-size: 0px;
+    margin-right: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    &:hover {
+      font-size: 20px;
+      width: 70px;
+      text-indent: 0px;
+      background-color: black;
+      border: 3px solid #EDDADA;
+      color: #EDDADA;
+      padding-left: 10px;
+      font-weight: 700;
+      display : flex;
+      justify-content : center;
+      align-items : center;
+      background-size: 0;
+      transition: all 0.5s ease-out;
+    }
+    strong {
+      background-color: black;
+    }
+  }
+  .header-container {
+    display: flex;
+    width: 90vw;
+    opacity: 1;
+    margin: 0 auto;
+    max-height: 300px;
+    padding: 10px 0px;
+    background-color: rgb(87, 84, 84);
+  }
+  .search_form {
+    position: relative;
+    display: flex;
+    border: 2px solid #EDDADA;
+    border-radius: 20px;
+    .search_input {
+      background-color:  rgb(87, 84, 84);
+      color: white;
+      width: 60vw;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      line-height: -5px;
+    }
+    input::placeholder{
+      color: white;
+    }
+    .search_button {
+      font-family: 'MaplestoryOTFBold';
+      border: 3px solid #EDDADA;
+      border-left: none;
+      font-size: 20px;
+      background-color: #EDDADA;
+      height: 100%;
+      color: #878484;
+      cursor: pointer;
+      border-radius: 0 15px 15px 0;
+    }
+    .option {
+      img {
+        display: block;
+        padding: 10px;
+      }
+      background: linear-gradient(90deg,#878484, #EDDADA);
+      height: 45px;
+      display: flex;
+      text-align: center;
+      cursor: pointer;
+    }
+    .option-ul {
+      div {
+        position: relative;
+        button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: 16px;
+          border: 2px solid black;
+          border-radius: 5px;
+          background-color: white;
+          cursor: pointer;
+          &:hover {
+            border: 2px solid orange;
+            color: orange;
+          }
+        }
+      }
+      box-shadow: 10px 10px 0px 0px black;
+      font-family: 'MaplestoryOTFBold';
+      font-size: 30px;
+      padding: 20px;
+      background-color: white;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .top {
+        margin-top: 10px;
+        border-top: 2px solid black;
+      }
+      .option-li {
+        padding: 10px;
+        font-size: 20px;
+        font-family: 'OTWelcomeBA';
+        .year_input {
+          width: 8vw;
+          border: 1px solid black;
+          border-radius: 3px;
+          background-color: white;
+          font-size: 15px;
+          padding: 5px 5px;
+          &::placeholder {
+            color: gray;
+          }
+        }
+        select {
+          padding: 0px 5px;
+          height: 35px;
+          font-family: Arial;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+}

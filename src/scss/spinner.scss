@@ -1,3 +1,4 @@
+// 로딩 아이콘
 .movie-loading {
   width: 100px;
   height: 100px;
@@ -8,6 +9,7 @@
   left: 45%;
   z-index: 3;
 }
+
 svg {
   animation: progress-circular-rotate 1.4s linear infinite;
 }
@@ -19,9 +21,11 @@ circle {
   stroke-dashoffset: 0px;
   stroke: currentColor;
 }
+
 @keyframes progress-circular-rotate {
   to { transform: rotate(1turn); }
 }
+
 @keyframes progress-circular-dash { 
   0% { 
       stroke-dasharray: 1, 200;
