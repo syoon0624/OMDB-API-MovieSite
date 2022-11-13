@@ -207,7 +207,7 @@ header {
           }
         }
         select {
-          padding: 5px;
+          padding: 0px 5px;
           height: 35px;
         }
       }
@@ -332,7 +332,8 @@ header {
         }
       }
       select {
-        padding: 5px;
+        padding: 0px 5px;
+        height: 35px;
       }
     }
   }
