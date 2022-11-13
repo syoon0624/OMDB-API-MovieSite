@@ -12,6 +12,7 @@ export default () => {
     const lengthOptionEl = document.querySelectorAll('.length');
     const typeOptionEl = document.querySelectorAll('.type');
 
+    // 옵션 메뉴 숨김/드러냄
     for(let i = 0; i < 2; i++) {
         optionEl[i].addEventListener('click', () => {
             toggle ? (optionUl[i].classList.remove('hidden'), toggle = false) : 
@@ -19,15 +20,16 @@ export default () => {
         })
     }
 
-    // for(let i = 0; i < 2; i++) {
-    //     clearBtnEl[i].addEventListener('click', (e) => {
-    //         e.preventDefault();
-    //         yearsOptionEl[i].value = '';
-    //         lengthOptionEl[i].value = '10';
-    //         typeOptionEl[i].value = 'movie';
-    //     })
-    // }
+    // Option의 값들을 초기화
+    for(let i = 0; i < 2; i++) {
+        clearBtnEl[i].addEventListener('mousedown', (e) => {
+            yearsOptionEl[i].value = '';
+            lengthOptionEl[i].value = '10';
+            typeOptionEl[i].value = 'movie';
+        })
+    }
 
+    // 검색 input focus 시 vlaue값을 지워주는 버튼 드러냄/숨김
     inputEl.forEach(ele => {
         ele.addEventListener('focus', () => {
             clearEl.forEach(el => {

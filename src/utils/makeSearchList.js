@@ -1,3 +1,4 @@
+// 영화 리스트 태그 삽입
 export default async (data) => {
     const divEl = document.querySelector('.movie_list');
     if(data !== undefined) {
@@ -5,7 +6,6 @@ export default async (data) => {
             const uList = document.createElement('ul');
             uList.classList.add('movie-box');
             divEl.appendChild(uList);
-            const list = document.createElement('li');
             
             const val = Object.values(element);
             const key = Object.keys(element);
@@ -49,13 +49,3 @@ export default async (data) => {
         });
     }
 };
-
-/*
- <ul>
-    <li>
-        <p>title:</p>
-        <p>Year:</p>
-        <img />
-    </li>
- </ul>
-*/

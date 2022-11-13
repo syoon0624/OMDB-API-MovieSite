@@ -1,3 +1,4 @@
+// 영화 상세 정보 태그 삽입(모달창)
 import imdb from '../images/Internet Movie Database.png';
 import metacritic from '../images/Metacritic.png';
 import rotten from '../images/Rotten Tomatoes.png';
@@ -9,7 +10,6 @@ const ratingImgs = {
     'Rotten Tomatoes': rotten
 }
 
-// console.log(imdb);
 export default async (movieInfo) => {
     const body = document.body;
     const modal = document.createElement('div');
@@ -23,7 +23,7 @@ export default async (movieInfo) => {
 
     console.log(movieInfo);
 
-    // modal 생성
+    // modal 태그 생성
     modal.append(modalContent);
     modalContent.innerHTML += `
             <div class="info-wrap">

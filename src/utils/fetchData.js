@@ -4,16 +4,19 @@ import openModal from "./modalDetail.js";
 import loaders from "./loader.js";
 import inputToggle from "./inputToggle.js";
 
-// 전역 변수
+// 전역 변수(store)
 let page = 1;
 let toggle = false;
 let input = '';
 let years = '';
 let type = '';
 let pageCount = 1;
+
+// 로딩 아이콘 생성자
 const loader = new loaders({
     el: '.movie-loading',
 });
+
 // 정렬용 데이터
 let allData = [];
 
@@ -76,6 +79,7 @@ export const setDataList = async() => {
                 err = 'No Found Page';
             } else {
                 data.push(movie.Search);
+                // 정렬을 위한 기존 검색 데이터 쌓기
                 allData.push(...movie.Search);
                 Math.floor(total/10)+1 === page ?  page = -1 : page++;
             }
@@ -134,7 +138,7 @@ const showData = async (ele) => {
     loader.stop();
 }
 
-// movie-box에 영화 id 검색해서 modal 창 띄우기
+// 검색되어 출력된 movie list에서 id만 추출, 해당 영화의 상세정보를 불러오는 함수 호출
 const inDataIdList = () => {
     const dataId = document.querySelectorAll('.movie-box');
     // console.log(dataId);
@@ -149,7 +153,7 @@ const inDataIdList = () => {
 export default async (event) => {
     event === undefined ? null : event.preventDefault()
 
-    // 중복 클릭 처리
+    // 중복 클릭 처리(예외처리)
     if(
         toggle === true && 
         input === document.querySelector('header > div > form > input').value && 
@@ -160,6 +164,10 @@ export default async (event) => {
     }
 
     // 화면 전환
+    /* 
+    해당 form값은 첫 홈페이지/ 검색 페이지의 총 두개의 form을 동시에 생성하였기 때문에 
+    화면 전환 시, 맞춰야 할 focus를 조정하기 위함
+    */
     input = toggle ? 
     document.querySelector('header > div > form > input').value : 
     document.querySelector('.search-container > form > input').value;
@@ -176,13 +184,12 @@ export default async (event) => {
     document.querySelector('header > div > form > ul > div > #length > .length').value :
     document.querySelector('.search-container > form > ul > div > #length > .length').value
 
-    console.log(years);
-
     pageCount = parseInt(pageCount) / 10;
 
     toggle = inputToggle(toggle, input);
 
     try {
+            // 검색창에 value값이 없을 경우, 없지만 url 파라미터 상에는 있는 경우로 나누어 처리
             if(input !== ''){
                 while(document.querySelector('.movie_list > ul') !== null) {
                     page = 1;
@@ -215,6 +222,5 @@ export default async (event) => {
             }
     } catch (err) {
         console.log(err)
-    } finally {
     }
 };

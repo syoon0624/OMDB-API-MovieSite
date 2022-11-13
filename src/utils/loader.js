@@ -1,3 +1,4 @@
+// 로딩 아이콘(애니메이션) 생성자 클래스
 export default class {
   constructor(options) {
     const { 

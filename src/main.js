@@ -1,7 +1,6 @@
 import './scss/main.scss';
-import { fetchData } from './utils';
+import { fetchData, formHandler } from './utils';
 import logoimg from './images/logo.png';
-import formHandler from './utils/formHandler';
 import { sortData } from './utils/fetchData';
 
 const imgEl = document.querySelector('.main-logo > img');
@@ -11,7 +10,6 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
 
 (async () => {
     try {
-
         // 영화 리스트 정렬
         const sortDownEl = document.querySelector('.sort-down');
         const sortUpEl = document.querySelector('.sort-up');

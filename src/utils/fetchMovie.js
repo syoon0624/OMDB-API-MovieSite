@@ -2,6 +2,7 @@ const url= 'https://www.omdbapi.com/';
 const key = process.env.MOVIE_API_KEY;
 const apiKey= `?apikey=${key}&`;
 
+// API 호출(url상의 파라미터 정보를 읽어 호출, page는 내부적으로 counting)
 export default async (pageCount = 0, id = '') => {
     const urlParams 
         = window.location.search
