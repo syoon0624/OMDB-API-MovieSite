@@ -1,13 +1,11 @@
 # 🎥 영화 검색 사이트 프로젝트
 
 ## 🔗 API 및 배포 사이트
-___
 
 - API 사이트: [The Open Movie Database](http://www.omdbapi.com/)
 - 배포 주소: `https://jolly-malasada-e12b2c.netlify.app`
 
 ## 🔧 사용 기술/스택
-___
 <br />
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/scss-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/webpack-skyblue?style=for-the-badge&logo=webpack&logoColor=white">
 <img src="https://img.shields.io/badge/babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=black"> <img src="https://img.shields.io/badge/postcss-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white">
@@ -16,7 +14,7 @@ ___
 <br/>
 
 ## 💡 주요 구현 사항
-___
+
 ### 1. Vanilla JS로 최대한 SPA(Single Page Application)과 유사한 형태로 구현하였다.
 > React 프로젝트를 하기 전, 모던 JS에 대한 이해를 높이고 숙련도를 최대한 높이기 위한 마음에 바닐라 JS로 구현하는 것을 선택하였다. 이를 통해 길게 늘어져서 쓸수 있는 코드를 최대한 보기 쉽고 간결한 로직으로, 문법으로 작성 할 수 있는 방법에 대해 깊이 고민해 볼 수 있었던 것 같다. 
 - `history.pushState` API를 활용하여 페이지를 다시 로드하지 않고 URL을 탐색할 수 있도록 하였으며, `window.location` API를 통해 url 파라미터의 정보를 JS로 가져오도록 하여 쿼리스트링의 형태로 데이터의 정보를 전달할 수 있도록 하였다.
@@ -46,7 +44,7 @@ ___
 - 현재 나와있는 영화 정보들 내에서 최신순, 오래된 년도 순으로 정렬 할 수 있도록 한다.(전체 기준으로 정렬하면 좋을 것 같지만, 주어진 API의 한계로 인해 구현할 수 없었다.)
 
 ## 📕 애로사항, 개선점
-___
+
 1. OS간(window, mac) 보이는 화면이 조금씩 달라 스타일링이나 레이아웃을 맞추기 어려웠다. 그 결과 window 화면은 조금씩 픽셀단위로 그림이 짤리거나 부족한 화면을 찾아 볼 수 있다.
 2. 전체적으로 참조해서 사용하는 react/redux의 store에 올라갈 변수들을 한 모듈에 전역변수로 몰아서 넣어놓았다. 그렇기 때문에 모듈화에 대한 애로사항이 조금 있었다.(전역변수로 인해 모듈화할수 있는 함수/코드를 한 곳에 넣을 수 밖에 없었다. 이를 통해 store의 편리함을 다시 한 번 깨달았다.)
 3. 페이지를 초기에 렌더링할 경우, css를 적용하지 않은 html태그의 모습이 화면에 잠깐 나온다. 해당 부분에 대한 이유는 찾을 수 없었다.(scss의 영향? webpack?)
@@ -54,12 +52,12 @@ ___
 form 상의 input value를 받아 api를 호출하려 하면, 우선 해당 input이 메인화면상의 input인지, 검색 페이지 상의 input인지를 먼저 판별부터 해야 한다. 이를 확인하기 위한 코드가 생각보다 길게 작성되었다. 차라리 한 form 태그를 사용하여 화면상의 위치만 변경하도록 했다면 더 낫지 않았을까 하는 생각이 든다.
 
 ## ⚙️ 앞으로의 TODO
-___
+
 1. 페이지 유지보수
 2. 코드 리펙토링
 
 ## 📄 Usage
-___
+
 
 ### 설치
 - git clone 후, `root path` 에 터미널에 해당 명령어 입력
