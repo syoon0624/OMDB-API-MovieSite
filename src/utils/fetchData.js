@@ -205,6 +205,7 @@ export default async (event) => {
                 }
                 const url = new URL(window.location.href);
                 input = url.searchParams.get('s');
+                document.querySelector('header > div > form > input').value = input;
                 await setDataList();
                 await inDataIdList();
                 await scroll();
