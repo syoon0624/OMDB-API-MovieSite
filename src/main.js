@@ -11,6 +11,7 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
 
 (async () => {
     try {
+
         // 영화 리스트 정렬
         const sortDownEl = document.querySelector('.sort-down');
         const sortUpEl = document.querySelector('.sort-up');
@@ -22,10 +23,13 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
         const form = document.querySelectorAll('.search_form');
         
         formHandler();
-
-        await form.forEach(ele => {
-            ele.addEventListener('submit', fetchData);
-        });
+        if(window.location.search !== '') {
+            fetchData();
+        } else {
+            await form.forEach(ele => {
+                ele.addEventListener('submit', fetchData);
+            });
+        }
         
     } catch (err) {
         console.log(err);

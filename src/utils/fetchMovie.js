@@ -2,19 +2,18 @@ const url= 'https://www.omdbapi.com/';
 const key = process.env.MOVIE_API_KEY;
 const apiKey= `?apikey=${key}&`;
 
-export default async (search = '', pageCount = 0, year = '',type = 'movie', id = '') => {
-    const page = `&page=${pageCount}&type=${type === '' ? type = movie: type}`;
+export default async (pageCount = 0, id = '') => {
+    const urlParams 
+        = window.location.search
+    let search = urlParams.replace('?','');
+    // ?s=input&type=movie&y=2020
+    console.log(urlParams);
+    const page = `&page=${pageCount}`;
     try {
-        if(id === '' && year === '') {
+        if(id === '') {
             const response = await fetch(url + apiKey + search + page);
             //console.log(response);
             const data = await response.json();
-            return data;
-        } else if (year !== '') {
-            const response = await fetch(url + apiKey + search + `&y=${year}` + page);
-            // console.log(response);
-            const data = await response.json();
-            // console.log(data);
             return data;
         } else if (id !== '') {
             const response = await fetch(url + apiKey + 'i=' + id + '&plot=full');

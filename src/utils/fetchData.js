@@ -18,21 +18,22 @@ const loader = new loaders({
 let allData = [];
 
 // 정렬하기
-export const sortData = async(type) => {
+export const sortData = async(types) => {
     let count = 0;
     let movies = [];
     let dummy = [];
-
+    
     window.scrollTo(0, 0);
     console.log(allData);
 
     loader.start();
+
     while(document.querySelector('.movie_list > ul') !== null) {
         const child = document.querySelector('.movie_list > ul');
         child.parentNode.removeChild(child);
     }
 
-    type === 'down' ?
+    types === 'down' ?
     allData = allData.sort((a, b) => parseInt(b.Year) - parseInt(a.Year)) :
     allData = allData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
 
@@ -56,11 +57,10 @@ export const setDataList = async() => {
         loader.start();
 
         let err = '';
-        const text = input? 's='+input : undefined;
         const data = [];
 
         for(let i = 1; i <= pageCount; i++) {
-            const movie = await fetchMovie(text, page, years, type);
+            const movie = await fetchMovie(page);
             const total = movie.totalResults ?? 0;
 
             if(page === 1) {
@@ -126,7 +126,7 @@ const showData = async (ele) => {
         el: '.movie-loading',
     });
     loader.start();
-    const detail = await fetchMovie('',-1,'',type,ele.id);
+    const detail = await fetchMovie(undefined,ele.id);
     console.log(detail.Runtime);
     if(!document.querySelector('.modal')) {
         openModal(detail);
@@ -147,7 +147,6 @@ const inDataIdList = () => {
 
 // 영화 정보 데이터 전달
 export default async (event) => {
-    event.preventDefault();
     
     // 중복 클릭 처리
     if(
@@ -183,11 +182,29 @@ export default async (event) => {
 
     try {
             if(input !== ''){
+                event.preventDefault();
                 while(document.querySelector('.movie_list > ul') !== null) {
                     page = 1;
+                    allData = [];
                     const child = document.querySelector('.movie_list > ul');
                     child.parentNode.removeChild(child);
                 }
+
+                const text = input? 's='+input : undefined;
+
+                window.history.pushState(undefined, "search", `/?${text}&type=${type}${years !== '' ? '&y=' + years : ''}`);
+                await setDataList();
+                await inDataIdList();
+                await scroll();
+            } else if(window.location.search !== '') {
+                while(document.querySelector('.movie_list > ul') !== null) {
+                    page = 1;
+                    allData = [];
+                    const child = document.querySelector('.movie_list > ul');
+                    child.parentNode.removeChild(child);
+                }
+                const url = new URL(window.location.href);
+                input = url.searchParams.get('s');
                 await setDataList();
                 await inDataIdList();
                 await scroll();
