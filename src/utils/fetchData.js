@@ -11,13 +11,47 @@ let input = '';
 let years = '';
 let type = '';
 let pageCount = 1;
+const loader = new loaders({
+    el: '.movie-loading',
+});
+// 정렬용 데이터
+let allData = [];
+
+// 정렬하기
+export const sortData = async(type) => {
+    let count = 0;
+    let movies = [];
+    let dummy = [];
+
+    window.scrollTo(0, 0);
+    console.log(allData);
+
+    loader.start();
+    while(document.querySelector('.movie_list > ul') !== null) {
+        const child = document.querySelector('.movie_list > ul');
+        child.parentNode.removeChild(child);
+    }
+
+    type === 'down' ?
+    allData = allData.sort((a, b) => parseInt(b.Year) - parseInt(a.Year)) :
+    allData = allData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+
+    allData.forEach(ele => {
+        dummy.push(ele);
+        count++;
+        if(count === 10) {
+            count = 0;
+            movies.push(dummy);
+            dummy = [];
+        };
+    })
+    await movies.forEach(ele => dataInHTML(ele));
+    await inDataIdList();
+    await loader.stop();
+}
 
 // 데이터 불러오기 후 태그에 넣기
 export const setDataList = async() => {
-    const loader = new loaders({
-        el: '.movie-loading',
-    });
-
     if(input !== '') {
         loader.start();
 
@@ -42,6 +76,7 @@ export const setDataList = async() => {
                 err = 'No Found Page';
             } else {
                 data.push(movie.Search);
+                allData.push(...movie.Search);
                 Math.floor(total/10)+1 === page ?  page = -1 : page++;
             }
         }
