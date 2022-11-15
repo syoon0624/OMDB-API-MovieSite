@@ -106,8 +106,6 @@ const scroll = () => {
         target: 관찰 대상 요소(Element)
         time: 변경이 발생한 시간 정보(DOMHighResTimeStamp)
         */
-    
-        const ioTarget = entry[0].target;
         if (entry[0].isIntersecting) {
             io.unobserve(endEl);
             if(page <= 1) {
@@ -213,6 +211,8 @@ export default async (event) => {
                 }
                 const url = new URL(window.location.href);
                 input = url.searchParams.get('s');
+                years = url.searchParams.get('y') !== null ? url.searchParams.get('y') : '';
+                type = url.searchParams.get('type');
                 document.querySelector('header > div > form > input').value = input;
                 await setDataList();
                 await inDataIdList();
