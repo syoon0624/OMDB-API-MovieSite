@@ -6,7 +6,6 @@
 - 배포 주소: `https://jolly-malasada-e12b2c.netlify.app`
 
 ## 🔧 사용 기술/스택
-<br />
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/scss-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/webpack-skyblue?style=for-the-badge&logo=webpack&logoColor=white">
 <img src="https://img.shields.io/badge/babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=black"> <img src="https://img.shields.io/badge/postcss-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white">
 <img src="https://img.shields.io/badge/dotenv-gray?style=for-the-badge&logo=dotenv&logoColor=white">
