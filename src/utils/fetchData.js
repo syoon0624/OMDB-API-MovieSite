@@ -2,7 +2,7 @@ import dataInHTML from "./makeSearchList.js";
 import fetchMovie from "./fetchMovie.js";
 import openModal from "./modalDetail.js";
 import loaders from "./loader.js";
-import inputToggle from "./inputToggle.js";
+import inputToggle from "./searchBarToggle.js";
 
 // 전역 변수(store)
 let page = 1;
@@ -12,6 +12,7 @@ let years = '';
 let type = '';
 let pageCount = 1;
 
+
 // 로딩 아이콘 생성자
 const loader = new loaders({
     el: '.movie-loading',
@@ -19,40 +20,6 @@ const loader = new loaders({
 
 // 정렬용 데이터
 let allData = [];
-
-// 정렬하기
-export const sortData = async(types) => {
-    let count = 0;
-    let movies = [];
-    let dummy = [];
-    
-    window.scrollTo(0, 0);
-    console.log(allData);
-
-    loader.start();
-
-    while(document.querySelector('.movie_list > ul') !== null) {
-        const child = document.querySelector('.movie_list > ul');
-        child.parentNode.removeChild(child);
-    }
-
-    types === 'down' ?
-    allData = allData.sort((a, b) => parseInt(b.Year) - parseInt(a.Year)) :
-    allData = allData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
-
-    allData.forEach(ele => {
-        dummy.push(ele);
-        count++;
-        if(count === 10) {
-            count = 0;
-            movies.push(dummy);
-            dummy = [];
-        };
-    })
-    await movies.forEach(ele => dataInHTML(ele));
-    await inDataIdList();
-    await loader.stop();
-}
 
 // 데이터 불러오기 후 태그에 넣기
 export const setDataList = async() => {
@@ -107,13 +74,11 @@ const scroll = () => {
         time: 변경이 발생한 시간 정보(DOMHighResTimeStamp)
         */
         if (entry[0].isIntersecting) {
-            io.unobserve(endEl);
             if(page <= 1) {
                 observer.disconnect();
             } else {
                 await setDataList(input, years)
                 await inDataIdList();
-                io.observe(endEl);
             }
         }
     }, {
@@ -147,44 +112,68 @@ const inDataIdList = () => {
     });
 }
 
+// 정렬하기
+export const sortData = async(types) => {
+    let count = 0;
+    let movies = [];
+    let dummy = [];
+    
+    window.scrollTo(0, 0);
+    console.log(allData);
+
+    loader.start();
+
+    while(document.querySelector('.movie_list > ul') !== null) {
+        const child = document.querySelector('.movie_list > ul');
+        child.parentNode.removeChild(child);
+    }
+
+    types === 'down' ?
+    allData = allData.sort((a, b) => parseInt(b.Year) - parseInt(a.Year)) :
+    allData = allData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+
+    allData.forEach(ele => {
+        dummy.push(ele);
+        count++;
+        if(count === 10) {
+            count = 0;
+            movies.push(dummy);
+            dummy = [];
+        };
+    })
+    await movies.forEach(ele => dataInHTML(ele));
+    await inDataIdList();
+    await loader.stop();
+}
+
 // 영화 정보 데이터 전달
 export default async (event) => {
-    event === undefined ? null : event.preventDefault()
+    let values = {
+        input: input,
+        years: years,
+        type: type,
+        pageCount: pageCount,
+        toggle: toggle
+    };
 
-    // 중복 클릭 처리(예외처리)
-    if(
-        toggle === true && 
-        input === document.querySelector('header > div > form > input').value && 
-        years === document.querySelector('#year-header').value &&
-        type ===  document.querySelector('header > div > form > ul > div > #type > .type').value
-        ) {
-        return;
-    }
+    event === undefined ? null : event.preventDefault();
 
     // 화면 전환
     /* 
     해당 form값은 첫 홈페이지/ 검색 페이지의 총 두개의 form을 동시에 생성하였기 때문에 
     화면 전환 시, 맞춰야 할 focus를 조정하기 위함
     */
-    input = toggle ? 
-    document.querySelector('header > div > form > input').value : 
-    document.querySelector('.search-container > form > input').value;
+    values = inputToggle(values);
 
-    years = toggle ?
-    document.querySelector('#year-header').value :
-    document.querySelector('.search-container > form > ul > div > li > .year_input').value
-
-    type = toggle ? 
-    document.querySelector('header > div > form > ul > div > #type > .type').value :
-    document.querySelector('.search-container > form > ul > div > #type > .type').value
-
-    pageCount = toggle ?
-    document.querySelector('header > div > form > ul > div > #length > .length').value :
-    document.querySelector('.search-container > form > ul > div > #length > .length').value
-
-    pageCount = parseInt(pageCount) / 10;
-
-    toggle = inputToggle(toggle, input);
+    // 중복 클릭 처리(예외처리)
+    if(toggle === true && input === values.input && years === values.years && type ===  values.type) return;
+    
+    // 검색 form에서 나온 값 갱신
+    input = values.input;
+    years = values.years;
+    type = values.type;
+    pageCount = values.pageCount;
+    toggle = values.toggle;
 
     try {
             // 검색창에 value값이 없을 경우, 없지만 url 파라미터 상에는 있는 경우로 나누어 처리
