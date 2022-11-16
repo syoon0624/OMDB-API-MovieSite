@@ -1,6 +1,6 @@
 // 검색 창에서의 헤더 스타일
 header {
-  border-bottom: 2px solid #EDDADA;
+  border-bottom: 2px solid #eddada;
   background-color: rgb(87, 84, 84);
   position: fixed;
   top: 0;
@@ -15,7 +15,7 @@ header {
       align-items: baseline;
       bottom: 0;
       right: 0;
-      border-left: 3px solid #EDDADA;
+      border-left: 3px solid #eddada;
       button {
         padding-top: 5px;
         border: none;
@@ -29,7 +29,7 @@ header {
     }
   }
   .logo-wrapper {
-    border: 2px solid #EDDADA;
+    border: 2px solid #eddada;
     text-decoration: none;
     width: 53px;
     //background-image: url("../images/logo.png");
@@ -46,13 +46,13 @@ header {
       width: 70px;
       text-indent: 0px;
       background-color: black;
-      border: 3px solid #EDDADA;
-      color: #EDDADA;
+      border: 3px solid #eddada;
+      color: #eddada;
       padding-left: 10px;
       font-weight: 700;
-      display : flex;
-      justify-content : center;
-      align-items : center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-size: 0;
       transition: all 0.5s ease-out;
     }
@@ -72,11 +72,11 @@ header {
   .search_form {
     position: relative;
     display: flex;
-    border: 2px solid #EDDADA;
+    border: 2px solid #eddada;
     border-radius: 20px;
     .search_input {
       font-family: sans-serif;
-      background-color:  rgb(87, 84, 84);
+      background-color: rgb(87, 84, 84);
       color: white;
       width: 60vw;
       font-size: 20px;
@@ -85,15 +85,15 @@ header {
       border-radius: 20px;
       line-height: -5px;
     }
-    input::placeholder{
-      color: #EDDADA;
+    input::placeholder {
+      color: #eddada;
     }
     .search_button {
       font-family: 'MaplestoryOTFBold';
-      border: 3px solid #EDDADA;
+      border: 3px solid #eddada;
       border-left: none;
       font-size: 20px;
-      background-color: #EDDADA;
+      background-color: #eddada;
       height: 100%;
       color: #878484;
       cursor: pointer;
@@ -104,7 +104,7 @@ header {
         display: block;
         padding: 10px;
       }
-      background: linear-gradient(90deg,#878484, #EDDADA);
+      background: linear-gradient(90deg, #878484, #eddada);
       height: 45px;
       display: flex;
       text-align: center;
