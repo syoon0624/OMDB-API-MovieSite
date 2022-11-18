@@ -26,6 +26,12 @@ headerImgEl.style.backgroundImage = `url(${logoimg})`;
       return;
     });
 
+    // 뒤로가기, 앞으로가기를 했을 때 페이지 새로고침
+    window.addEventListener('popstate', () => {
+      console.log('location changed!');
+      location.reload();
+    });
+
     if (window.location.search !== '') {
       fetchData();
     }

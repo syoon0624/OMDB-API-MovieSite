@@ -202,7 +202,7 @@ export default async (event) => {
       window.history.pushState(
         undefined,
         'search',
-        `/?${text}&type=${type}${years !== '' ? '&y=' + years : ''}`
+        `/search?${text}&type=${type}${years !== '' ? '&y=' + years : ''}`
       );
       await setDataList();
       await inDataIdList();
